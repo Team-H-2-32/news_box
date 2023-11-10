@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<!--header-->
+<!--<div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--        <div class="col-sm-2">-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-2" style="font-size: 30px">-->
+<!--                    <i class="fa-solid fa-bars"></i>-->
+<!--                </div>-->
+<!--                <div class="col-sm-10">-->
+<!--                    <a href="">NEWS BOX</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-8 header_catelory" style="font-size: 30px;">{{ page_name }} </div>-->
+<!--        <div class="col-sm-2">-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-2">-->
+<!--                    <img src="{{user.profile_pic.url}}" style="width: 30px; height: 30px; border-radius: 50%;">-->
+<!--                </div>-->
+<!--                <div class="col-sm-10">-->
+<!--                    <p style="font-size: 22px">{{user.username}}</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--body-->
+<p>{{news.title}}</p>
+<img src="{{news.photo}}" style="max-width: 300px;">
+ <p>Description: {{ news.description }}<a href="{{ news.url }}">  read more</a> </p>
+
+
+<a href="{% url 'news_app:save' id=news.id %}"><b>Save</b></a>
+<ul>
+{% for comment in comments %}
+    <li>
+        <p><b>{{ comment.user.username }}</b></p><p>{{ comment.created_at }}</p>
+        <p> {{ comment.comment }}</p>
+    </li>
+{% endfor %}
+</ul>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">submit</button>
+</form>
+
+
+{% endblock %}

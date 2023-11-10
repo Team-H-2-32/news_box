@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<!--body-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <p style="font-size: 50px; text-align: center; margin: 40px 0; color: #545454;">フォローしているカテゴリー</p>
+                <button class="border_radius_button hover_color_button" style="width: 100%; height: 110px; margin-bottom: 40px;">
+                    <p style="font-size: 40px; margin: 0; text-align: center">スポーツ</p>
+                </button>
+                <button class="border_radius_button hover_color_button" style="width: 100; height: 110px; margin-bottom: 40px;">
+                    <p style="font-size: 40px; margin: 0; text-align: center">ビジネス</p>
+                </button>
+                <button class="border_radius_button hover_color_button" style="width: 100; height: 110px; margin-bottom: 40px;">
+                    <p style="font-size: 40px; margin: 0; text-align: center">テクノロジー</p>
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <button class="hover_color_button primary_color" style=" width: 80px; height: 80px; border-radius: 50%; border: none; position: absolute; bottom: 16%; right: 14%;">
+                <i class="fa-solid fa-plus" style="font-size: 50px; color: white;"></i>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
