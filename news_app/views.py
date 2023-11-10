@@ -152,4 +152,8 @@ def delete_view(request, id, arg):
         return redirect('news_app:history')
 
 
+def example(request):
+    pass
+
+
 
