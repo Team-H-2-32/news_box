@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
-    <title>Logout</title>
+    <title>{{ page_name }}</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'news_app/style.css' %}">
 </head>
 <body>
+    <div class="row">
+        <div class="col-sm-5">
+            <h3 style="font-size: 40px; font-size: 40px; margin: 6% 0 4% 0; text-align: center;">本当にログアウトしますか？</h3>
+            <div class="row" style="margin-left: 22%;">
+                <button class="col-sm-6 confirm_button yes_button" style="margin: 0 5% 0 10%;">
+                    <a class="yes_button_a" href="{% url 'user:logout' %}" style="color: #b23948;"> はい</a>
+                </button>
+                <button class="col-sm-6 confirm_button no_button" style="margin: 0 10% 0 5%;">
+                    <a class="no_button_a" href="{% url 'news_app:home' %}"> いいえ</a>
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-7">
 
-<h3>本当にログアウトしますか？</h3>
-<p><a href="{% url 'user:logout' %}"> はい </a> </p>
-<p><a href="{% url 'news_app:home' %}"> いいえ </a> </p>
-
-
+        </div>
+    </div>
 </body>
 </html>

@@ -2,12 +2,28 @@
 
 .options_account_list {
     position: absolute;
+    text-decoration: none;
     font-size: 22px;
     right: 1%;
     top: 11%;
     box-shadow: -3px 3px 10px 0px #a98fd9;
     z-index: 1;
     display: none;
+}
+.option_item {
+    text-decoration: none;
+    color: #a98fd9 ;
+}
+.options_account_list p {
+    margin: 0;
+    padding: 8px 14px;
+    background-color: #e2d9f3;
+}
+.options_account_list p:hover {
+    background-color: #a98fd9;
+}
+.options_account_list p:hover .option_item {
+    color: #e2d9f3;
 }
 .options_account_list.open {
     display: block;
@@ -21,16 +37,7 @@
     border-style: solid;
     border-color: transparent transparent #e2d9f3 transparent;
 }
-.option_item {
-    margin: 0;
-    padding: 8px 14px;
-    background-color: #e2d9f3;
-    color: #a98fd9 ;
-}
-.option_item:hover {
-    background-color: #a98fd9;
-    color: #e2d9f3;
-}
+
 
 /*body*/
 .primary_color {
@@ -84,5 +91,41 @@
     color: white ;
 }
 
-
-
+/* logout-verify */
+.confirm_button {
+    width: 18%;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 8px 0;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: none;
+}
+.yes_button {
+    background-color: #e35d6a;
+    transition: 0.2s;
+}
+.yes_button_a {
+    text-decoration: none;
+    color: #ffff !important;
+}
+.yes_button:hover {
+    background-color: #e2d9f3;
+}
+.yes_button:hover .yes_button_a{
+    color: #e35d6a !important;
+}
+.no_button {
+    background-color: #75b798;
+    transition: 0.2s;
+}
+.no_button_a {
+    text-decoration: none;
+    color: #ffff;
+}
+.no_button:hover {
+    background-color: #e2d9f3;
+}
+.no_button:hover .no_button_a{
+    color: #198754 ;
+}

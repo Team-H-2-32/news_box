@@ -10,8 +10,8 @@
 </head>
 <body class="js-modal-container">
 <!--header-->
-    <div class="container-fluid primary_color" style="index: 9">
-        <div class="row ">
+    <div class="container-fluid primary_color" style="index: 9;">
+        <div class="row">
             <div class="col-sm-1">
                 <img src="{% static 'media/logo.png' %}" style="width: 200px; height: 63px; margin: 6px 16px">
             </div>
@@ -19,26 +19,39 @@
 
             </div>
             <div  class="col-sm-1 js-option-button" style="padding: 0.7% 0 0 4%;">
-                <img src="{{ request.user.profile_pic.url }}" style="width: 50px; height: 50px; border-radius: 50%;">
-                <div class="options_account_list">
-                    <p class="option_item">profile & edit</p>
-                    <p class="option_item">sign in</p>
-                    <p class="option_item">history</p>
-                    <p class="option_item">logn out</p>
-                </div>
+                {% if request.user.username %}
+                    <img src="{{ request.user.profile_pic.url }}" style="width: 50px; height: 50px; border-radius: 50%;">
+                    <div class="options_account_list">
+                        <p><a class="option_item" href="{% url 'user:edit_profile' %}">profile edit</a></p>
+                        <p><a class="option_item" href="{% url 'news_app:history' %}">history</a></p>
+                        <p><a class="option_item" href="{% url 'user:logout_verify' %}">logn out</a></p>
+                    </div>
+                {% else %}
+                    <img src="{% static 'media/default.jpg' %}" style="width: 50px; height: 50px; border-radius: 50%;">
+                    <div class="options_account_list">
+                        <p><a class="option_item" href="{% url 'user:login' %}">logn in</a></p>
+                        <p><a class="option_item" href="{% url 'user:email_confirm' %}">sign in</a></p>
+                    </div>
+                {% endif %}
             </div>
-<!--            <div class="col-sm-1 js-option-button" style="padding: 0.7% 0 0 4%;">-->
-<!--                <img src="{{ request.user.profile_pic.url }}" style="width: 50px; height: 50px; border-radius: 50%;">-->
-<!--                <div class="options_account_list primary_color">-->
-<!--                    <p class="option_item" style="padding: 8px 24px">logn in</p>-->
-<!--                    <p class="option_item" style="padding: 8px 24px">sign in</p>-->
-<!--                </div>-->
-<!--            </div>-->
+
         </div>
     </div>
 {% block content %}
 
 {% endblock  %}
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            if($(this).scrollTop()) {
+                $('header').addClass('sticky');
+            else{
+
+            }
+        });
+    });
+</script>
 <script>
     const optionBtn = document.querySelector('.js-option-button')
     const modalContainer = document.querySelector('.js-modal-container')
@@ -59,6 +72,8 @@
     optionBtn.addEventListener('click', function (event) {
         event.stopPropagation()
     })
+
+
 </script>
 </body>
 </html>

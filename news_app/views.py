@@ -11,7 +11,7 @@ from news_app.forms import CommentForm
 from news_app.models import News, Comment, History, SavedNews
 
 
-@login_required
+# @login_required
 def home_view(request):
     print(f"USERRRRR!!!!!!!{request.user}")
     return render(request, 'news_app/home.html')
