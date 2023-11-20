@@ -45,12 +45,14 @@ INSTALLED_APPS = [
     'main',
 
     'gevent',
+    'modeltranslation'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -111,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja-ja'
 
 TIME_ZONE = 'UTC'
 
@@ -135,6 +137,24 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_URL = '/user/login/'
+
+TIME_ZONE = 'Asia/Tokyo'
+
+USE_I18N = True
+
+USE_TZ = True
+
+LOCALE_PATHS = BASE_DIR, 'locale/',
+
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = [
+    ("ja", _("Japanese")),
+    ("en", _("English")),
+    ("ru", _("Russian")),
+]
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ja'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

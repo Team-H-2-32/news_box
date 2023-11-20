@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+    {% load i18n %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,9 +10,8 @@
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button type="submit">Save</button>
+    <button type="submit">{% blocktranslate %}保存する{% endblocktranslate %}</button>
 </form>
 
-<p><a href="{% url 'user:change_pass' %}">Change password</a></p>
 </body>
 </html>

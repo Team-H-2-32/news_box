@@ -3,7 +3,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
 from main.models import Category
 from django.views import View
 

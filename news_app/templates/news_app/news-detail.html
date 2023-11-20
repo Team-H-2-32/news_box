@@ -1,54 +1,75 @@
 {% extends 'main/base.html' %}
-
+{% load i18n %}
 {% block content %}
 
-<!--header-->
-<!--<div class="container-fluid">-->
-<!--    <div class="row">-->
-<!--        <div class="col-sm-2">-->
-<!--            <div class="row">-->
-<!--                <div class="col-sm-2" style="font-size: 30px">-->
-<!--                    <i class="fa-solid fa-bars"></i>-->
-<!--                </div>-->
-<!--                <div class="col-sm-10">-->
-<!--                    <a href="">NEWS BOX</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="col-sm-8 header_catelory" style="font-size: 30px;">{{ page_name }} </div>-->
-<!--        <div class="col-sm-2">-->
-<!--            <div class="row">-->
-<!--                <div class="col-sm-2">-->
-<!--                    <img src="{{user.profile_pic.url}}" style="width: 30px; height: 30px; border-radius: 50%;">-->
-<!--                </div>-->
-<!--                <div class="col-sm-10">-->
-<!--                    <p style="font-size: 22px">{{user.username}}</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--body-->
-<p>{{news.title}}</p>
-<img src="{{news.photo}}" style="max-width: 300px;">
- <p>Description: {{ news.description }}<a href="{{ news.url }}">  read more</a> </p>
+<b><h1 id="title">{{ news.title }}</h1></b>
+<img src="{{ news.photo }}" style="max-width: 300px;">
+<h3 id="description">Description: <b>{{ news.description }}<b>　　<a href="{{ news.url }}">{% blocktranslate %}　続きを読む {% endblocktranslate %}</a></h3>
 
-
-<a href="{% url 'news_app:save' id=news.id %}"><b>Save</b></a>
+<a href="{% url 'news_app:save' id=news.id %}"><b>{% blocktranslate %}　保存する {% endblocktranslate %}</b></a>
 <ul>
-{% for comment in comments %}
-    <li>
-        <p><b>{{ comment.user.username }}</b></p><p>{{ comment.created_at }}</p>
-        <p> {{ comment.comment }}</p>
-    </li>
-{% endfor %}
+    {% for comment in comments %}
+        <li>
+            <p><b>{{ comment.user.username }}</b></p><p>{{ comment.created_at }}</p>
+            <p>{{ comment.comment }}</p>
+        </li>
+    {% endfor %}
 </ul>
 
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">submit</button>
+    <button type="submit">{% blocktranslate %}　送信 {% endblocktranslate %}</button>
 </form>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const descript = document.getElementById("description");
+        const title = document.getElementById("title");
+        const D = descript.innerHTML;
+        const T = title.innerHTML;
+        console.log(D);
+
+<!--        async function translateText() {-->
+<!--            const url = 'https://microsoft-translator-text.p.rapidapi.com/translate?to%5B0%5D=vi&api-version=3.0&profanityAction=NoAction&textType=plain';-->
+<!--            const options = {-->
+<!--                method: 'POST',-->
+<!--                headers: {-->
+<!--                    'Content-Type': 'application/json',-->
+<!--                    'X-RapidAPI-Key': '729ad8cb4bmshc2f04df14ef2a65p1e623djsne81bc94a5d3d',-->
+<!--                    'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com'-->
+<!--                },-->
+<!--                body: JSON.stringify([-->
+<!--                    {-->
+<!--                        Text: `${T}`-->
+<!--                    }-->
+<!--                ])-->
+<!--            };-->
+
+<!--            try {-->
+<!--                const response = await fetch(url, options);-->
+
+<!--                if (response.ok) {-->
+<!--                    const result = await response.json();-->
+
+<!--                    if (result && result.length > 0 && result[0].translations) {-->
+<!--                        const translationsValue = result[0].translations[0].text;-->
+<!--                        console.log(translationsValue);-->
+<!--                        title.innerHTML = translationsValue;-->
+<!--                    } else {-->
+<!--                        console.error('Error: Invalid response format');-->
+<!--                    }-->
+<!--                } else {-->
+<!--                    console.error(`Error: ${response.status} - ${response.statusText}`);-->
+<!--                }-->
+<!--            } catch (error) {-->
+<!--                console.error(error);-->
+<!--            }-->
+<!--        }-->
+
+<!--        // Call the function-->
+<!--        translateText();-->
+<!--    });-->
+</script>
 
 {% endblock %}

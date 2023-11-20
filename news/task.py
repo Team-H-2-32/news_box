@@ -3,6 +3,7 @@ from main.models import Category
 from news_app.models import News
 from .celery import app
 from .news_api import top_headlines, key
+from .microsoft_translator_api import translate
 
 
 @app.task()
@@ -29,14 +30,21 @@ def get_all_news():
         for article in category_data['articles']:
             article_url = article['url']
             if article_url not in existing_urls:
+                title = article['title']
+                description = article['description']
                 News.objects.create(
                     title=article['title'],
+                    title_en=translate(to='en', text=title),
+                    title_ru=translate(to='ru', text=title),
                     description=article['description'],
+                    description_en=translate(to='en', text=description),
+                    description_ru=translate(to='ru', text=description),
                     photo=article['urlToImage'],
                     source=article['source']['name'],
                     url=article_url,
                     category=category
                 )
+
                 existing_urls = list(existing_urls) + [article_url]
 
 

@@ -8,9 +8,9 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Login</button>
+    <button type="submit">{% blocktranslate %}　ログイン {% endblocktranslate %}</button>
 </form>
 
-<p>Not member yet?! <a href="{% url 'user:email_confirm' %}">Register</a></p>
+<p>{% blocktranslate %}　会員じゃない方は {% endblocktranslate %} <a href="{% url 'user:email_confirm' %}">会員登録</a></p>
 </body>
 </html>

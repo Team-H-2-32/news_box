@@ -1,4 +1,6 @@
 {% extends 'main/base.html' %}
+    {% load i18n %}
+
 {% block content %}
 <!--body-->
 <div class="container-fluid">
@@ -8,12 +10,18 @@
         </div>
         <div class="col-sm-6">
             <div class="row">
-                <p style="font-size: 50px; text-align: center; margin: 40px 0; color: #545454">フォローしているカテゴリー</p>
+                <p style="font-size: 50px; text-align: center; margin: 40px 0; color: #545454">{% blocktrans %}フォローしているカテゴリー{% endblocktrans %}</p>
                 <button class="border_radius_button hover_color_button" style="width: 100%; height: 110px; margin-bottom: 40px;">
                     <p style="font-size: 40px; margin: 0; text-align: center">スポーツ</p>
                 </button>
                 <button class="border_radius_button hover_color_button" style="width: 100; height: 110px; margin-bottom: 40px;">
                     <p style="font-size: 40px; margin: 0; text-align: center">ビジネス</p>
+                </button>
+                <button class="border_radius_button hover_color_button" style="width: 100; height: 110px; margin-bottom: 40px;">
+                    <p style="font-size: 40px; margin: 0; text-align: center">テクノロジー</p>
+                </button>
+                <button class="border_radius_button hover_color_button" style="width: 100; height: 110px; margin-bottom: 40px;">
+                    <p style="font-size: 40px; margin: 0; text-align: center">テクノロジー</p>
                 </button>
                 <button class="border_radius_button hover_color_button" style="width: 100; height: 110px; margin-bottom: 40px;">
                     <p style="font-size: 40px; margin: 0; text-align: center">テクノロジー</p>

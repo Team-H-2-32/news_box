@@ -6,6 +6,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.views import View
+
 from .forms import EmailConfirmationForm, CodeVerifyForm, SetPasswordForm, LoginForm, EditProfileForm, ChangePassForm
 from .models import User, UserConfirmation
 from news.task import send_email

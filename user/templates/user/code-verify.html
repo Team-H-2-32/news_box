@@ -8,7 +8,7 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Send</button>
+    <button type="submit">{% blocktranslate %}送信{% endblocktranslate %}</button>
 </form>
 </body>
 </html>

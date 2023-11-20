@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Confirm password</title>
+    <title>{% blocktranslate %}　パスワード確認 {% endblocktranslate %}</title>
 </head>
 <body>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">submit</button>
+    <button type="submit">{% blocktranslate %}送信{% endblocktranslate %}</button>
 </form>
 </body>
 </html>
