@@ -13,21 +13,28 @@
 >>>>>>> Stashed changes
 </head>
 <body>
-    <div class="row">
-        <div class="col-sm-5">
-            <h3 style="font-size: 40px; font-size: 40px; margin: 6% 0 4% 0; text-align: center;">本当にログアウトしますか？</h3>
-            <div class="row" style="margin-left: 22%;">
-                <button class="col-sm-6 confirm_button yes_button" style="margin: 0 5% 0 10%;">
-                    <a class="yes_button_a" href="{% url 'user:logout' %}" style="color: #b23948;"> はい</a>
-                </button>
-                <button class="col-sm-6 confirm_button no_button" style="margin: 0 10% 0 5%;">
-                    <a class="no_button_a" href="{% url 'news_app:home' %}"> いいえ</a>
-                </button>
+    <div class="container_logout_verify">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4" style="margin-top: 12%; background-color: #ffff; box-shadow: 0 0 60px 20px #a98fd9; padding: 2% 2% 4% 2%;">
+                <h3 style="font-size: 40px; font-size: 40px; margin: 6% 0 6% 0; text-align: center;">本当にログアウトしますか？</h3>
+                <div class="row" style="margin-left: 22%;">
+                    <button class="col-sm-6 confirm_button yes_button" style="margin: 0 5% 0 10%;">
+                        <a class="yes_button_a" href="{% url 'user:logout' %}" style="color: #b23948;"> はい</a>
+                    </button>
+                    <button class="col-sm-6 confirm_button no_button" style="margin: 0 10% 0 5%;">
+                        <a class="no_button_a" href="{% url 'news_app:home' %}"> いいえ</a>
+                    </button>
+                </div>
             </div>
+<<<<<<< Updated upstream
         </div>
         <div class="col-sm-7">
 
 <<<<<<< Updated upstream
+=======
+            <div class="col-sm-4"></div>
+>>>>>>> Stashed changes
         </div>
     </div>
 =======

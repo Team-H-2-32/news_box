@@ -1,10 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <link rel="stylesheet" href="{% static 'news_app/style.css' %}">
 </head>
 <body>
+<<<<<<< Updated upstream
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -12,5 +17,36 @@
 </form>
 
 <p>{% blocktranslate %}　会員じゃない方は {% endblocktranslate %} <a href="{% url 'user:email_confirm' %}">会員登録</a></p>
+=======
+<div class="row" style="margin-top: 6%">
+    <div class="col-sm-4">
+
+    </div>
+    <div class="col-sm-4 login_container" style="padding: 2%; border: none">
+        <p class="login_label">ログイン</p>
+        <form method="post">
+            {% csrf_token %}
+            <label for="{{ form.email.id_for_label }}" class="label_form">メールアドレス</label>
+                <br>
+            <input type="text" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" class="input_form"/>
+            <br>
+            <label for="{{ form.password.id_for_label }}" class="label_form">パスワード</label>
+                <br>
+            <input type="password" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}" class="input_form"/>
+            <div style="display: flex; justify-content: center; margin-top: 4%;">
+                <button class="category_button hover_color_button"  type="submit" style="width: 30%">ログイン</button>
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 8%;">
+                <p><a href="{% url 'user:email_confirm' %}">無料会員</a> / <a href="{% url 'user:email_confirm' %}">パスワードを忘れた方</a></p>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+</div>
+
+
+>>>>>>> Stashed changes
 </body>
 </html>

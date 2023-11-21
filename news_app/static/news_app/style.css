@@ -5,7 +5,7 @@
     text-decoration: none;
     font-size: 22px;
     right: 1%;
-    top: 11%;
+    top: 124%;
     box-shadow: -3px 3px 10px 0px #a98fd9;
     z-index: 1;
     display: none;
@@ -129,3 +129,40 @@
 .no_button:hover .no_button_a{
     color: #198754 ;
 }
+.container_logout_verify {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(226, 217, 243, 0.8);
+    display: none;
+}
+.container_logout_verify.open{
+    display: block;
+}
+/* Comment */
+.comment_input {
+    width: 100%;
+    height: 46px;
+    background-color: rgba(226, 217, 243, 0.5);
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding: 4px 30px;
+    border: none;
+}
+.comment_input:focus {
+    box-shadow: 0 0 10px 0 #a98fd9;
+    border: none;
+}
+
+/* news_detail */
+.save.active,
+.not_save.active {
+    display: block;
+}
+.save ,
+.not_save {
+    display: none;
+}
+

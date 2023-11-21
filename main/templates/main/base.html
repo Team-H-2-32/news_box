@@ -12,7 +12,11 @@
 <body class="js-modal-container">
 <!--header-->
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <div class="container-fluid primary_color" style="index: 9;">
+=======
+    <div class="container-fluid primary_color" style="position: fixed; top: 0; z-index: 3">
+>>>>>>> Stashed changes
         <div class="row">
 =======
     <div class="container-fluid primary_color" style="index: 9">
@@ -33,7 +37,7 @@
                     <div class="options_account_list">
                         <p><a class="option_item" href="{% url 'user:edit_profile' %}">profile edit</a></p>
                         <p><a class="option_item" href="{% url 'news_app:history' %}">history</a></p>
-                        <p><a class="option_item" href="{% url 'user:logout_verify' %}">logn out</a></p>
+                        <p class="js-logout"><a class="option_item" href="#">logn out</a></p>
                     </div>
                 {% else %}
                     <img src="{% static 'media/default.jpg' %}" style="width: 50px; height: 50px; border-radius: 50%;">
@@ -77,21 +81,27 @@
 >>>>>>> Stashed changes
         </div>
     </div>
+    <div class="container_logout_verify" style="z-index: 3">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 js-container" style="margin-top: 12%; background-color: #ffff; box-shadow: 0 0 60px 20px #a98fd9; padding: 2% 2% 4% 2%;">
+                <h3 style="font-size: 40px; font-size: 40px; margin: 6% 0 6% 0; text-align: center;">本当にログアウトしますか？</h3>
+                <div class="row" style="margin-left: 22%;">
+                    <button class="col-sm-6 confirm_button yes_button" style="margin: 0 5% 0 10%;">
+                        <a class="yes_button_a" href="{% url 'user:logout' %}" style="color: #b23948;"> はい</a>
+                    </button>
+                    <button class="col-sm-6 confirm_button no_button" style="margin: 0 10% 0 5%;">
+                        <a class="no_button_a" href="{% url 'news_app:home' %}"> いいえ</a>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
 {% block content %}
 
 {% endblock  %}
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function() {
-        $(window).scroll(function() {
-            if($(this).scrollTop()) {
-                $('header').addClass('sticky');
-            else{
-
-            }
-        });
-    });
-</script>
 <script>
     const optionBtn = document.querySelector('.js-option-button')
     const modalContainer = document.querySelector('.js-modal-container')
@@ -114,6 +124,23 @@
     })
 
 
+</script>
+<script>
+    const logoutBtn = document.querySelector('.js-logout')
+    const logoutConfirm = document.querySelector('.container_logout_verify')
+    const container = document.querySelector('.js-container')
+    function showBtnConfirm() {
+        logoutConfirm.classList.add('open')
+    }
+    function removeBtnConfirm() {
+        logoutConfirm.classList.remove('open')
+    }
+    logoutBtn.addEventListener('click', showBtnConfirm)
+    logoutConfirm.addEventListener('click', removeBtnConfirm)
+
+    container.addEventListener('click', function(event) {
+        event.stopPropagation()
+    })
 </script>
 </body>
 </html>

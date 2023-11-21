@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+<<<<<<< Updated upstream
 {% load i18n %}
 {% block content %}
 
@@ -29,6 +30,75 @@
         const D = descript.innerHTML;
         const T = title.innerHTML;
         console.log(D);
+=======
+{% block content %}
+
+<p>{{news.title}}</p>
+<div class="row" style="margin-top: 5%;">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+         <!--body-->
+        <div class="row" style="margin-bottom: 4%;">
+            <div class="col-sm-4">
+                <img src="{{news.photo}}" style="max-width: 300px;">
+            </div>
+            <div class="col-sm-8">
+                <p style="font-size: 20px;">{{ news.description }}</p>
+                <div style="display: flex; justify-content: end;">
+                    <div style="font-size: 36px;">
+                        <div class="not_save active">
+                            <a href="{% url 'news_app:save' id=news.id %}"><i class="fa-regular fa-bookmark" style="color: #a98fd9;"></i></a>
+                        </div>
+                        <div class="save">
+                            <a href="{% url 'news_app:delete' id=news.id arg='saved' %}"><i class="fa-solid fa-bookmark" style="color: #a98fd9;"></i></a>
+                        </div>
+
+                    </div>
+                    <button class="category_button" style="width: 20%; margin: 0 4%;"><a href="{{ news.url }}" style="text-decoration: none; font-size: 22px; color: #e2d9f3;"> read more</a></button>
+                </div>
+            </div>
+        </div>
+
+        <!--Comment input-->
+        <div class="comment_container" style="border: none; ">
+            <div class="comment_header" style="display: flex; justify-content: start;">
+                <p style="font-size: 40px; margin: 8px 10px 0 20px;">
+                    <i class="fa-regular fa-comments"></i>
+                </p>
+                <p style="font-size: 22px; margin: 26px 10px 10px 6px; font-weight: 600;">コメント</p>
+                <p style="font-size: 26px; margin: 23px 0 10px 6px; font-weight: 600;">{{ comments|length }}</p>
+                <p style="font-size: 22px; margin: 26px 10px 10px 2px; font-weight: 600;">件</p>
+            </div>
+            <div class="comment_body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div style="padding: 0 3% 0 3%;">
+                        <input class="comment_input" name="comment" required="" id="id_comment" placeholder="コメントを入力してください">
+                    </div>
+                    <button class="category_button" type="submit" style="margin: 1% 0 1% 15%; position: relative; left: 760px; font-size: 24px; color: #e2d9f3; width: 14%;">submit</button>
+                </form>
+            </div>
+        </div>
+
+        <!--Commented List-->
+        <ul style=" margin: 4% 0 30% 0;">
+        {% for comment in comments %}
+            <li style="list-style: none;">
+                <span style="font-size: 16px; background-color: #a98fd9; border-top-left-radius: 10px; border-bottom-right-radius: 10px; padding: 1px 8px;">{{ comment.user.username }}</span>
+                <span style="font-size: 12px; margin-left: 6px;">{{ comment.created_at }}</span>
+                <p style="word-wrap: break-word"> {{ comment.comment }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="col-sm-2"></div>
+</div>
+<script>
+    
+</script>
+>>>>>>> Stashed changes
 
 <!--        async function translateText() {-->
 <!--            const url = 'https://microsoft-translator-text.p.rapidapi.com/translate?to%5B0%5D=vi&api-version=3.0&profanityAction=NoAction&textType=plain';-->
