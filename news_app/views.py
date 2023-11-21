@@ -12,26 +12,29 @@ from news_app.models import News, Comment, History, SavedNews
 
 # @login_required
 def home_view(request):
-    print(f"USERRRRR!!!!!!!{request.user}")
-    return render(request, 'news_app/home.html')
+    user = request.user
+    categories = user.followed_categories.all()
+
+    context = {
+        'categories': categories
+    }
+    return render(request, 'news_app/home.html', context)
 
 
 class NewsView( LoginRequiredMixin, View):
     def get(self, request):
-        # ctgr = Category.objects.get(category=category)
-        #
-        # news = News.objects.filter(category=ctgr).order_by('-created_at')[:10]
-        #
-        # context = {
-        #     'page_name': category.title(),
-        #     'news': news
-        # }
+        user = request.user
+        categories = user.followed_categories.all()
 
-        return render(request, 'news_app/news_page.html')
+        context = {
+            'categories': categories
+        }
+
+        return render(request, 'news_app/news_page.html', context)
 
 
 def get_news_view(request, category):
-    ctgr = Category.objects.get(category=category)
+    ctgr = Category.objects.get(category_en=category)
     news = News.objects.filter(category=ctgr).order_by('-created_at')[:10]
 
     dict = {'news':[]}

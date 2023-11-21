@@ -4,22 +4,15 @@
 <div class="container-fluid"  style="margin-top: 4%">
     <div class="row" style="padding: 20px 0 0 30px;">
         <div class="col-sm-2" style=" border-right: solid 1px;">
-            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id='sports'>スポーツ</button>
-            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id='business'>business</button>
-            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id='technology'>technology</button>
-            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id='health'>health</button>
-            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id='entertainment'>entertainment</button>
-            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id='science'>science</button>
-            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id='general'>general</button>
+            {% for c in categories %}
+            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id={{ c.category_en }}>{{ c.category }}</button>
+            {% endfor %}
         </div>
         <div class="col-sm-6" style="margin-left: 10%; padding: 0; ">
-            <p class="category_title" style="font-size: 56px; text-align: center;">スポーツ</p>
-            <p class="category_title" style="font-size: 56px; text-align: center;">business</p>
-            <p class="category_title" style="font-size: 56px; text-align: center;">technology</p>
-            <p class="category_title" style="font-size: 56px; text-align: center;">health</p>
-            <p class="category_title" style="font-size: 56px; text-align: center;">entertainment</p>
-            <p class="category_title" style="font-size: 56px; text-align: center;">science</p>
-            <p class="category_title" style="font-size: 56px; text-align: center;">general</p>
+            {% for c in categories %}
+            <p class="category_title" style="font-size: 56px; text-align: center;">{{ c.category }}</p>
+            {% endfor %}
+
             <ul id="news-container" style="list-style: none;">
 
 
