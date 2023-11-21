@@ -1545,7 +1545,7 @@ msgid "フォローしているカテゴリー"
 msgstr "Followed categories"
 
 #: .\news_app\templates\news_app\news-detail.html:7
-msgid "　続きを読む "
+msgid "続きを読む"
 msgstr "read more"
 
 #: .\news_app\templates\news_app\news-detail.html:9

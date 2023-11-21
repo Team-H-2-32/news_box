@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import home_view, NewsView, DetailPageView, save_view, get_news_view, saved_news_view, history_view, \
-    delete_view
+    delete_view, category_list_view
 
 app_name = 'news_app'
 
@@ -13,5 +13,6 @@ urlpatterns = [
     path('news/history/', history_view, name='history'),
     path('news/save/<uuid:id>/', save_view, name='save'),
     path('news/delete/<uuid:id>/<str:arg>/', delete_view, name='delete'),
+    path('news/categories/', category_list_view, name='categories'),
 
 ]

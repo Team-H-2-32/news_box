@@ -115,7 +115,7 @@ def save_view(request, id):
                 )
             else:
                 obj.delete()
-            return redirect('news_app:news_detail', id=id)
+            return redirect('news_app:news_detail', id=news.id)
     else:
         return print('error')
 
@@ -147,10 +147,22 @@ def saved_news_view(request):
 def delete_view(request, id, arg):
     news = News.object.get(id=id)
     if arg == 'saved':
-        SavedNews.objects.delete(news=news)
+        obj = SavedNews.objects.get(news=news)
+        obj.delete()
         return redirect('news_app:saved_news')
     else:
-        History.objects.delete(news=news)
+        obj = History.objects.delete(news=news)
+        obj.delete()
         return redirect('news_app:history')
+
+
+def category_list_view(request):
+    categories = Category.objects.all()
+
+    context = {
+        'categories': categories
+    }
+
+    return render(request, 'news_app/categories.html', context)
 
 
