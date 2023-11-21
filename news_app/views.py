@@ -87,7 +87,8 @@ class DetailPageView(LoginRequiredMixin, View):
                 'form': form,
                 'news': news,
                 'comments': comments,
-                'saved': saved
+                'saved': saved,
+                'arg': 'saved-detail'
             }
 
             return render(request, 'news_app/news-detail.html', context)
@@ -149,20 +150,24 @@ def saved_news_view(request):
     news = [n.news for n in saved_news]
     context = {
         'news': news,
-        'saved': 'saved'
+        'arg': 'saved'
     }
 
     return render(request, 'news_app/saved-history-news-list.html', context)
 
 
 def delete_view(request, id, arg):
-    news = News.object.get(id=id)
-    if arg == 'saved':
+    news = News.objects.get(id=id)
+    if arg == 'saved-detail':
+        obj = SavedNews.objects.get(news=news)
+        obj.delete()
+        return redirect('news_app:news_detail', id=id)
+    elif arg == 'saved':
         obj = SavedNews.objects.get(news=news)
         obj.delete()
         return redirect('news_app:saved_news')
-    else:
-        obj = History.objects.delete(news=news)
+    elif arg == 'history':
+        obj = History.objects.get(news=news)
         obj.delete()
         return redirect('news_app:history')
 
@@ -175,5 +180,6 @@ def category_list_view(request):
     }
 
     return render(request, 'news_app/categories.html', context)
+
 
 

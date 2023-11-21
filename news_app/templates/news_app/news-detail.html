@@ -16,7 +16,7 @@
                     <div style="font-size: 36px;">
                         {% if saved %}
                             <div class="save">
-                                <a href="{% url 'news_app:delete' id=news.id arg='saved' %}"><i class="fa-solid fa-bookmark" style="color: #a98fd9;"></i></a>
+                                <a href="{% url 'news_app:delete' id=news.id arg=arg %}"><i class="fa-solid fa-bookmark" style="color: #a98fd9;"></i></a>
                             </div>
                         {% else %}
                             <div class="not_save">
