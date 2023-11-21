@@ -14,13 +14,15 @@
                 <p style="font-size: 20px;">{{ news.description }}</p>
                 <div style="display: flex; justify-content: end;">
                     <div style="font-size: 36px;">
-                        <div class="not_save active">
-                            <a href="{% url 'news_app:save' id=news.id %}"><i class="fa-regular fa-bookmark" style="color: #a98fd9;"></i></a>
-                        </div>
-                        <div class="save">
-                            <a href="{% url 'news_app:delete' id=news.id arg='saved' %}"><i class="fa-solid fa-bookmark" style="color: #a98fd9;"></i></a>
-                        </div>
-
+                        {% if saved %}
+                            <div class="save">
+                                <a href="{% url 'news_app:delete' id=news.id arg='saved' %}"><i class="fa-solid fa-bookmark" style="color: #a98fd9;"></i></a>
+                            </div>
+                        {% else %}
+                            <div class="not_save">
+                                <a href="{% url 'news_app:save' id=news.id %}"><i class="fa-regular fa-bookmark" style="color: #a98fd9;"></i></a>
+                            </div>
+                        {% endif %}
                     </div>
                     <button class="category_button" style="width: 20%; margin: 0 4%;"><a href="{{ news.url }}" style="text-decoration: none; font-size: 22px; color: #e2d9f3;">{% blocktrans %}続きを読む{% endblocktrans %}</a></button>
                 </div>
@@ -61,44 +63,27 @@
     </div>
     <div class="col-sm-2"></div>
 </div>
-<!--<h3 id="description">Description: <b>{{ news.description }}<b>　　<a href="{{ news.url }}">{% blocktranslate %}　続きを読む {% endblocktranslate %}</a></h3>-->
+<!--<script>-->
+<!--    const notSave = document.querySelector('.not_save')-->
+<!--    const save = document.querySelector('.save')-->
+<!--    function Save() {-->
+<!--&lt;!&ndash;        event.preventDefault();&ndash;&gt;-->
+<!--        var notSaveDiv = document.querySelector('.not_save');-->
+<!--        var saveDiv = document.querySelector('.save');-->
 
-<!--<a href="{% url 'news_app:save' id=news.id %}"><b>{% blocktranslate %}　保存する {% endblocktranslate %}</b></a>-->
-<!--<ul>-->
-<!--    {% for comment in comments %}-->
-<!--        <li>-->
-<!--            <p><b>{{ comment.user.username }}</b></p><p>{{ comment.created_at }}</p>-->
-<!--            <p>{{ comment.comment }}</p>-->
-<!--        </li>-->
-<!--    {% endfor %}-->
-<!--</ul>-->
+<!--        notSaveDiv.classList.remove('active');-->
+<!--        saveDiv.classList.add('active');-->
+<!--    }-->
+<!--    function DeleteSave() {-->
+<!--&lt;!&ndash;        event.preventDefault();&ndash;&gt;-->
+<!--        var notSaveDiv = document.querySelector('.not_save');-->
+<!--        var saveDiv = document.querySelector('.save');-->
 
-<!--<form method="post">-->
-<!--    {% csrf_token %}-->
-<!--    {{ form.as_p }}-->
-<!--    <button type="submit">{% blocktranslate %}　送信 {% endblocktranslate %}</button>-->
-<!--</form>-->
-<script>
-    const notSave = document.querySelector('.not_save')
-    const save = document.querySelector('.save')
-    function Save() {
-        event.preventDefault();
-        var notSaveDiv = document.querySelector('.not_save');
-        var saveDiv = document.querySelector('.save');
-
-        notSaveDiv.classList.remove('active');
-        saveDiv.classList.add('active');
-    }
-    function DeleteSave() {
-        event.preventDefault();
-        var notSaveDiv = document.querySelector('.not_save');
-        var saveDiv = document.querySelector('.save');
-
-        saveDiv.classList.remove('active');
-        notSaveDiv.classList.add('active');
-    }
-    notSave.addEventListener('click', Save)
-    save.addEventListener('click', DeleteSave)
-</script>
+<!--        saveDiv.classList.remove('active');-->
+<!--        notSaveDiv.classList.add('active');-->
+<!--    }-->
+<!--    notSave.addEventListener('click', Save)-->
+<!--    save.addEventListener('click', DeleteSave)-->
+<!--</script>-->
 
 {% endblock %}

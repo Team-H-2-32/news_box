@@ -13,6 +13,12 @@
                         <h3><a href="{% url 'news_app:news_detail' i.id %}"> {% blocktranslate %}タイトル{% endblocktranslate %}: {{ i.title }}</a></h3>
                         <p>{{ i.source }}</p>
                         <p>{% blocktranslate %}カテゴリー{% endblocktranslate %}: <b>{{ i.category.category }}</b></p>
+                        <div class="save">
+                            <a href="{% url 'news_app:delete' id=news.id arg='saved' %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
+                        </div>
+                        <p>
+                            <i class="fa-solid fa-trash"></i>
+                        </p>
                     </div>
                 </div>
             {% endfor %}

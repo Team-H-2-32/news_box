@@ -158,12 +158,8 @@
 }
 
 /* news_detail */
-.save.active,
-.not_save.active {
-    display: block;
-}
 .save ,
 .not_save {
-    display: none;
+    display: block;
 }
 

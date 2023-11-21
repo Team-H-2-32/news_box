@@ -150,11 +150,11 @@ def saved_news_view(request):
 
 
 def delete_view(request, id, arg):
-    news = News.object.get(id=id)
+    news = News.objects.get(id=id)
     if arg == 'saved':
         obj = SavedNews.objects.get(news=news)
         obj.delete()
-        return redirect('news_app:saved_news')
+        return redirect('news_app:news_detail', id=news.id)
     else:
         obj = History.objects.delete(news=news)
         obj.delete()
