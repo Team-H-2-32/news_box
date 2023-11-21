@@ -13,7 +13,11 @@ from news_app.models import News, Comment, History, SavedNews
 # @login_required
 def home_view(request):
     user = request.user
-    categories = user.followed_categories.all()
+    categories = ''
+    if user.username:
+        categories = user.followed_categories.all()
+    else:
+        categories = Category.objects.all()
 
     context = {
         'categories': categories
@@ -131,7 +135,8 @@ def history_view(request):
 
     news = [n.news for n in history]
     context = {
-        'news': news
+        'news': news,
+        'arg': 'history'
     }
 
     return render(request, 'news_app/saved-history-news-list.html', context)
@@ -143,18 +148,19 @@ def saved_news_view(request):
 
     news = [n.news for n in saved_news]
     context = {
-        'news': news
+        'news': news,
+        'saved': 'saved'
     }
 
     return render(request, 'news_app/saved-history-news-list.html', context)
 
 
 def delete_view(request, id, arg):
-    news = News.objects.get(id=id)
+    news = News.object.get(id=id)
     if arg == 'saved':
         obj = SavedNews.objects.get(news=news)
         obj.delete()
-        return redirect('news_app:news_detail', id=news.id)
+        return redirect('news_app:saved_news')
     else:
         obj = History.objects.delete(news=news)
         obj.delete()
