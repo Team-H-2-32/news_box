@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,15 +10,7 @@
     <link rel="stylesheet" href="{% static 'news_app/style.css' %}">
 </head>
 <body>
-<<<<<<< Updated upstream
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">{% blocktranslate %}　ログイン {% endblocktranslate %}</button>
-</form>
 
-<p>{% blocktranslate %}　会員じゃない方は {% endblocktranslate %} <a href="{% url 'user:email_confirm' %}">会員登録</a></p>
-=======
 <div class="row" style="margin-top: 6%">
     <div class="col-sm-4">
 
@@ -45,8 +38,5 @@
 
     </div>
 </div>
-
-
->>>>>>> Stashed changes
 </body>
 </html>

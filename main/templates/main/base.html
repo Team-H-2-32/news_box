@@ -10,28 +10,33 @@
     <link rel="stylesheet" href="{% static 'news_app/style.css' %}">
 </head>
 <body class="js-modal-container">
-<!--header-->
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    <div class="container-fluid primary_color" style="index: 9;">
-=======
-    <div class="container-fluid primary_color" style="position: fixed; top: 0; z-index: 3">
->>>>>>> Stashed changes
-        <div class="row">
-=======
+
     <div class="container-fluid primary_color" style="index: 9">
         <div class="row ">
 
->>>>>>> Stashed changes
             <div class="col-sm-1">
                 <img src="{% static 'media/logo.png' %}" style="width: 200px; height: 63px; margin: 6px 16px">
             </div>
-
-            <div class="col-sm-10" >
+            <div class="col-sm-9" >
 
             </div>
+            <div class="col-sm-1">
+                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                    <select name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                {{ language.name_local }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="Go">
+                </form>
+            </div>
             <div  class="col-sm-1 js-option-button" style="padding: 0.7% 0 0 4%;">
-<<<<<<< Updated upstream
                 {% if request.user.username %}
                     <img src="{{ request.user.profile_pic.url }}" style="width: 50px; height: 50px; border-radius: 50%;">
                     <div class="options_account_list">
@@ -47,38 +52,6 @@
                     </div>
                 {% endif %}
             </div>
-
-=======
-                <img src="{{ request.user.profile_pic.url }}" style="width: 50px; height: 50px; border-radius: 50%;">
-                <div class="options_account_list">
-                    <p class="option_item"> {% blocktrans %} プロフィール {% endblocktrans %}</p>
-                    <p class="option_item">{% blocktrans %}　ログアウト　{% endblocktrans %}</p>
-                </div>
-            </div>
-            <div class="col-sm-1">
-            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                <input name="next" type="hidden" value="{{ redirect_to }}">
-                <select name="language">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                            {{ language.name_local }}
-                        </option>
-                    {% endfor %}
-                </select>
-                <input type="submit" value="Go">
-            </form>
-            </div>
-<!--            <div class="col-sm-1 js-option-button" style="padding: 0.7% 0 0 4%;">-->
-<!--                <img src="{{ request.user.profile_pic.url }}" style="width: 50px; height: 50px; border-radius: 50%;">-->
-<!--                <div class="options_account_list primary_color">-->
-<!--                    <p class="option_item" style="padding: 8px 24px">logn in</p>-->
-<!--                    <p class="option_item" style="padding: 8px 24px">sign in</p>-->
-<!--                </div>-->
-<!--            </div>-->
->>>>>>> Stashed changes
         </div>
     </div>
     <div class="container_logout_verify" style="z-index: 3">
@@ -98,9 +71,9 @@
             <div class="col-sm-4"></div>
         </div>
     </div>
-{% block content %}
 
-{% endblock  %}
+    {% block content %}
+    {% endblock %}
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
     const optionBtn = document.querySelector('.js-option-button')
