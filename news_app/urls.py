@@ -12,6 +12,6 @@ urlpatterns = [
     path('news/saved-news/', saved_news_view, name='saved_news'),
     path('news/history/', history_view, name='history'),
     path('news/save/<uuid:id>/', save_view, name='save'),
-    path('news/delete/<uuid:id>/', delete_view, name='delete'),
+    path('news/delete/<uuid:id>/<str:arg>/', delete_view, name='delete'),
 
 ]

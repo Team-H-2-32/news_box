@@ -27,9 +27,8 @@ class SetPasswordForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    email = forms.CharField(widget=forms.EmailInput())
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder' :'Email', 'style': 'width: 300px;', 'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput())
-
 
 class EditProfileForm(forms.ModelForm):
     username = forms.CharField(
@@ -42,6 +41,8 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'profile_pic']
+
+
 
 
 class ChangePassForm(forms.Form):

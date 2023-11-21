@@ -169,8 +169,8 @@ class EditProfileView(LoginRequiredMixin, View):
         if form.is_valid():
             form.save()
             return redirect('news_app:home')
-        else:
-            return redirect('main:error')
+        # else:
+        #     return redirect('main:error')
 
 
 class ChangePassView(LoginRequiredMixin, View):
