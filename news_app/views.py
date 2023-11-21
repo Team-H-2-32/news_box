@@ -67,8 +67,12 @@ class DetailPageView(LoginRequiredMixin, View):
         news = News.objects.filter(id=id).first()
         comments = Comment.objects.filter(news=news)
         history_check = History.objects.filter(user=user, news=news).first()
+        saved_check = SavedNews.objects.filter(user=user, news=news).first()
+        saved = False
 
         if news:
+            if saved_check:
+                saved = True
             if not history_check:
                 History.objects.create(
                     user=user,
@@ -78,7 +82,8 @@ class DetailPageView(LoginRequiredMixin, View):
             context = {
                 'form': form,
                 'news': news,
-                'comments': comments
+                'comments': comments,
+                'saved': saved
             }
 
             return render(request, 'news_app/news-detail.html', context)

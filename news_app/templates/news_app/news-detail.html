@@ -78,6 +78,27 @@
 <!--    {{ form.as_p }}-->
 <!--    <button type="submit">{% blocktranslate %}　送信 {% endblocktranslate %}</button>-->
 <!--</form>-->
+<script>
+    const notSave = document.querySelector('.not_save')
+    const save = document.querySelector('.save')
+    function Save() {
+        event.preventDefault();
+        var notSaveDiv = document.querySelector('.not_save');
+        var saveDiv = document.querySelector('.save');
 
+        notSaveDiv.classList.remove('active');
+        saveDiv.classList.add('active');
+    }
+    function DeleteSave() {
+        event.preventDefault();
+        var notSaveDiv = document.querySelector('.not_save');
+        var saveDiv = document.querySelector('.save');
+
+        saveDiv.classList.remove('active');
+        notSaveDiv.classList.add('active');
+    }
+    notSave.addEventListener('click', Save)
+    save.addEventListener('click', DeleteSave)
+</script>
 
 {% endblock %}
