@@ -4,9 +4,8 @@
     position: absolute;
     text-decoration: none;
     font-size: 22px;
-    margin-right: 8px;
-    right: 0%;
-    top: 11%;
+    right: 1%;
+    top: 118%;
     box-shadow: -3px 3px 10px 0px #a98fd9;
     z-index: 1;
     display: none;
@@ -163,3 +162,28 @@
     display: block;
 }
 
+/* History and Bookmark */
+.title {
+    width: 100%;
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+    margin: 0;
+    padding: 2px 0 4px 0;
+    color: white;
+    background-color: #b7a9d0;
+}
+.title.active {
+    color: #a98fd9;
+    background-color: white;
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
+}
+.history_wrap,
+.bookmark_wrap{
+    display: none;
+}
+.history_wrap.active,
+.bookmark_wrap.active {
+    display: block;
+}

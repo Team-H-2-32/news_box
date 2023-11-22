@@ -11,17 +11,15 @@
 </head>
 <body class="js-modal-container">
 
-    <div class="container-fluid primary_color" style="index: 9">
+    <div class="container-fluid primary_color" style="position: fixed; top: 0; border-bottom: 6px solid white;">
         <div class="row ">
-            <a href="{% url 'news_app:home' %}">
             <div class="col-sm-1">
-                            <a href="{% url 'news_app:home' %}">
-                <img src="{% static 'media/logo.png' %}" style="width: 200px; height: 63px; margin: 6px 16px">
-                                                </a>
+                <a href="{% url 'news_app:home' %}">
+                    <img src="{% static 'media/logo.png' %}" style="width: 200px; height: 63px; margin: 6px 16px">
+                </a>
 
             </div>
             <div class="col-sm-9" >
-
             </div>
             <div class="col-sm-1">
                 <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
@@ -71,7 +69,9 @@
                     </button>
                 </div>
             </div>
-            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+
+            </div>
         </div>
     </div>
 
