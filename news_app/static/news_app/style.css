@@ -163,6 +163,17 @@
 }
 
 /* History and Bookmark */
+.HisBook_edit_btn {
+    font-size: 30px;
+    margin: 1% 2% 0 0;
+}
+.HisBook_edit_btn a {
+    color: white;
+    padding: 1px 6px 6px 10px;
+}
+.HisBook_edit_btn a:hover {
+    background-color: #b7a9d0;
+}
 .title {
     width: 100%;
     font-size: 28px;
@@ -172,12 +183,37 @@
     padding: 2px 0 4px 0;
     color: white;
     background-color: #b7a9d0;
+    cursor: pointer;
 }
 .title.active {
+    width: 100%;
     color: #a98fd9;
     background-color: white;
     border-top-left-radius: 26px;
     border-top-right-radius: 26px;
+    border-bottom: 6px solid #b7a9d0;
+}
+.fromRightToLeft.active {
+    animation: rightLeft ease 0.7s;
+}
+.fromLeftToRight.active {
+    animation: leftRight ease 0.7s;
+}
+@keyframes rightLeft {
+    from {
+        transform: translateX(430px)
+    }
+    to {
+        transform: translateX(0)
+    }
+}
+@keyframes leftRight {
+    from {
+        transform: translateX(-430px)
+    }
+    to {
+        transform: translateX(0)
+    }
 }
 .history_wrap,
 .bookmark_wrap{
@@ -187,3 +223,4 @@
 .bookmark_wrap.active {
     display: block;
 }
+
