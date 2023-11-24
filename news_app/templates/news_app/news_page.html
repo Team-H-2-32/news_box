@@ -3,14 +3,20 @@
 <!--body-->
 <div class="container-fluid"  style="margin-top: 6%">
     <div class="row" style="padding: 20px 0 0 30px;">
-        <div class="col-sm-2" style=" border-right: solid 1px;">
+        <div class="category_wrap" style=" border-right: solid 1px #545454; width: 17%; display: flex; flex-direction: column; position: fixed; left: 51px;">
             {% for c in categories %}
+            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id={{ c.category_en }}>{{ c.category }}</button>
+            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id={{ c.category_en }}>{{ c.category }}</button>
+            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id={{ c.category_en }}>{{ c.category }}</button>
             <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id={{ c.category_en }}>{{ c.category }}</button>
             {% endfor %}
         </div>
+        <div class="col-sm-2" >
+
+        </div>
         <div class="col-sm-6" style="margin-left: 10%; padding: 0; ">
             {% for c in categories %}
-            <p class="category_title" style="font-size: 56px; text-align: center;">{{ c.category }}</p>
+            <p class="category_title" style="font-size: 56px; text-align: center; color: #545454;">{{ c.category }}</p>
             {% endfor %}
 
             <ul id="news-container" style="list-style: none;">

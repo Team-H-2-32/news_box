@@ -224,3 +224,22 @@
     display: block;
 }
 
+/* Category page */
+.icon_item {
+    font-size: 42px;
+    padding: 2px 16px 3px 16px;
+    border-radius: 50%;
+    background-color: #e2d9f3;
+    margin: 20px;
+}
+.hover_color_button:hover .icon_item {
+    background-color: #a98fd9;
+}
+.hover_color_button:hover .icon_item i {
+    color: #e2d9f3;
+}
+.icon_item:hover {
+    box-shadow: 0 0 20px 8px;
+    transition: 0.1s
+}
+
