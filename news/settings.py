@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from celery.schedules import crontab
+# from celery.schedules import crontab
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -174,19 +174,19 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Tokyo'
-CELERY_RESULT_BACKEND = 'rpc://'
-broker_connection_retry_on_startup = True
-CELERYD_CONCURRENCY = 'gevent'
-CELERY_BEAT_SCHEDULE = {
-    'get_all_news': {
-        'task': 'news.task.get_all_news',
-        'schedule': crontab(hour='*', minute='0, 15, 30, 45'),
-    },
-}
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'Asia/Tokyo'
+# CELERY_RESULT_BACKEND = 'rpc://'
+# broker_connection_retry_on_startup = True
+# CELERYD_CONCURRENCY = 'gevent'
+# CELERY_BEAT_SCHEDULE = {
+#     'get_all_news': {
+#         'task': 'news.task.get_all_news',
+#         'schedule': crontab(hour='*', minute='0, 15, 30, 45'),
+#     },
+# }
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
