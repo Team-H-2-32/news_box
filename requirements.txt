@@ -42,7 +42,6 @@ opencv-python==4.7.0.68
 paramiko==3.1.0
 Pillow==9.5.0
 platformdirs==3.10.0
-python==3.8
 prettytable==3.6.0
 prompt-toolkit==3.0.39
 psycopg2==2.9.9
