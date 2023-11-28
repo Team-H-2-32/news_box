@@ -22,7 +22,7 @@ categories = ['business', 'sports', 'technology', 'health', 'entertainment', 'sc
 @app.task()
 def get_all_news():
     for category_name in categories:
-        category = Category.objects.get(category=category_name)
+        category = Category.objects.get(category_en=category_name.title())
         existing_urls = News.objects.filter(category=category).values_list('url', flat=True)
 
         category_data = top_headlines(key, category_name)

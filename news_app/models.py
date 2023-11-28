@@ -5,11 +5,11 @@ from datetime import datetime, timedelta
 
 
 class News(BaseModel):
-    title = models.CharField(max_length=200, null=True)
+    title = models.TextField(null=True)
     description = models.TextField(null=True)
-    photo = models.CharField(max_length=400, null=True)
+    photo = models.TextField(null=True)
     source = models.CharField(max_length=300, null=True)
-    url = models.CharField(max_length=400, null=True)
+    url = models.TextField(null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
