@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Alisher\news_filter\env"
+VIRTUAL_ENV="C:\Users\minhh\news_box\news_box\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
