@@ -25,7 +25,7 @@ def home_view(request):
     return render(request, 'news_app/home.html', context)
 
 
-class NewsView( LoginRequiredMixin, View):
+class NewsView(View):
     def get(self, request):
         user = request.user
         categories = user.followed_categories.all()
