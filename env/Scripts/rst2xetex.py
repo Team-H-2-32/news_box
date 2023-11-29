@@ -1,4 +1,4 @@
-#!C:\Users\minhh\news_box\news_box\env\Scripts\python.exe
+#!C:\Users\Alisher\news_filter\env\Scripts\python.exe
 
 # $Id: rst2xetex.py 7847 2015-03-17 17:30:47Z milde $
 # Author: Guenter Milde

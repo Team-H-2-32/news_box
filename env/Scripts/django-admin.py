@@ -1,4 +1,4 @@
-#!C:\Users\minhh\news_box\news_box\env\Scripts\python.exe
+#!C:\Users\Alisher\news_filter\env\Scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

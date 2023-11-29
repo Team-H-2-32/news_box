@@ -1,4 +1,4 @@
-#!C:\Users\minhh\news_box\news_box\env\Scripts\python.exe
+#!C:\Users\Alisher\news_filter\env\Scripts\python.exe
 # -*- coding: utf8 -*-
 # :Copyright: © 2015 Günter Milde.
 # :License: Released under the terms of the `2-Clause BSD license`_, in short:
