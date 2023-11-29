@@ -9,7 +9,7 @@ from django.views import View
 
 from .forms import EmailConfirmationForm, CodeVerifyForm, SetPasswordForm, LoginForm, EditProfileForm, ChangePassForm
 from .models import User, UserConfirmation
-from news.task import send_email
+# from news.task import send_email
 
 
 class EmailConfirmationView(View):
@@ -30,7 +30,7 @@ class EmailConfirmationView(View):
             code = user.create_verify_code()
             print(code)
             login(request, user)
-            send_email.delay('検証コード', f"あなたの検証コードは {code} です", [cleaned_email])
+            # send_email.delay('検証コード', f"あなたの検証コードは {code} です", [cleaned_email])
             return redirect('user:code_verify')
         else:
             form = EmailConfirmationForm
