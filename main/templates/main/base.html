@@ -23,7 +23,7 @@
             <div class="col-sm-8" >
             </div>
             <div class="col-sm-1">
-                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <form class="language" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}">
                     <select name="language">
                         {% get_current_language as LANGUAGE_CODE %}
@@ -44,6 +44,22 @@
                     <div class="options_account_list">
                         <p><a class="option_item" href="{% url 'user:edit_profile' %}">profile edit</a></p>
                         <p><a class="option_item" href="{% url 'news_app:history' %}">history</a></p>
+                        <p class="language_item_option">
+                            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                <input name="next" type="hidden" value="{{ redirect_to }}">
+                                <select name="language">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                            {{ language.name_local }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <input type="submit" value="Go">
+                            </form>
+                        </p>
                         <p class="js-logout"><a class="option_item" href="#">logn out</a></p>
                     </div>
                 {% else %}

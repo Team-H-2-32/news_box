@@ -13,6 +13,12 @@
     height: 50px;
     border-radius: 50%;
 }
+..language {
+        display: block;
+}
+.language_item_option {
+    display: none;
+}
 .option_menu_wrap {
     padding: 0.7% 0 0 4%;
 }
@@ -360,6 +366,12 @@
     }
     .options_account_list p {
         padding: 10px 14px;
+    }
+    .language {
+        display: none;
+    }
+    .language_item_option {
+        display: block;
     }
     /* home body*/
     .category_followed {
