@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponse
@@ -130,27 +131,16 @@ def save_view(request, id):
         return print('error')
 
 
-def history_view(request):
+def history_saved_view(request):
     user = request.user
-    history = History.objects.filter(user=user).order_by('-created_at')[0:20]
+    history_obj = History.objects.filter(user=user).order_by('-created_at')[0:20]
+    saved_news_obj = SavedNews.objects.filter(user=user).order_by('-created_at')[0:20]
 
-    news = [n.news for n in history]
+    history = [n.news for n in history_obj]
+    saved_news = [n.news for n in saved_news_obj]
     context = {
-        'news': news,
-        'arg': 'history'
-    }
-
-    return render(request, 'news_app/saved-history-news-list.html', context)
-
-
-def saved_news_view(request):
-    user = request.user
-    saved_news = SavedNews.objects.filter(user=user).order_by('-created_at')[0:20]
-
-    news = [n.news for n in saved_news]
-    context = {
-        'news': news,
-        'arg': 'saved'
+        'history': history,
+        'saved_news': saved_news,
     }
 
     return render(request, 'news_app/saved-history-news-list.html', context)
@@ -165,11 +155,11 @@ def delete_view(request, id, arg):
     elif arg == 'saved':
         obj = SavedNews.objects.get(news=news)
         obj.delete()
-        return redirect('news_app:saved_news')
+        return redirect('news_app:history_saved')
     elif arg == 'history':
         obj = History.objects.get(news=news)
         obj.delete()
-        return redirect('news_app:history')
+        return redirect('news_app:history_saved')
 
 
 def category_list_view(request):
@@ -180,6 +170,22 @@ def category_list_view(request):
     }
 
     return render(request, 'news_app/categories.html', context)
+
+
+def follow_view(request, category):
+    user = request.user
+    ctgry = Category.objects.get(category_en=category)
+
+    user.followed_categories.add(ctgry)
+    messages.success(request, f"{ctgry.category} added to followed list")
+    return redirect('news_app:categories')
+
+def unfollow_view(request, category):
+    user = request.user
+    ctgry = Category.objects.get(category_en=category)
+    user.followed_categories.remove(ctgry)
+    messages.info(request, f"{ctgry.category} removed from followed list")
+    return redirect('news_app:categories')
 
 
 

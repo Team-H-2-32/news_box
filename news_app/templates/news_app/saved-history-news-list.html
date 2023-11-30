@@ -11,7 +11,7 @@
             <img id="profilePicPreview" src="{% if request.user.profile_pic %}{{ request.user.profile_pic.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="Profile Preview" style="width: 120px; height: 120px; border-radius: 50%; margin: 28px;">
             <div style="padding-right: 54%;">
                 <p style="font-size: 40px; margin: 32px 0 0 0; color: white;">{{request.user}}</p>
-                <p style="font-size: 22px; font-weight: 700; color: white;">mail</p>
+                <p style="font-size: 22px; font-weight: 700; color: white;">{{ request.user.email }}</p>
             </div>
             <p class="HisBook_edit_btn">
                 <a href="{% url 'user:edit_profile' %}"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -19,13 +19,13 @@
         </div>
         <div class="body_HisBook">
             <div class="button_wrap" style="display: flex; justify-content: center; background-color: #b7a9d0;">
-                <p class="history_button fromRightToLeft title active">履歴</p>
-                <p class="bookmark_button fromLeftToRight title ">ブックマーク</p>
+                <p class="history_button fromRightToLeft title active">{% blocktrans %}履歴{% endblocktrans %}</p>
+                <p class="bookmark_button fromLeftToRight title ">{% blocktrans %}ブックマーク{% endblocktrans %}</p>
             </div>
 
             <!--History-->
             <div class="history_wrap active">
-                {% for i in news %}
+                {% for i in history %}
                     <div class="row" style="padding: 20px 0px; margin: 0 12px;; border-top: #c1c1c1 solid 1px;">
                         <div class="col-sm-3">
                             <img src="{{ i.photo }}" alt="No photo" style="width: 100%; height: 60%;">
@@ -35,7 +35,7 @@
                             <p>{{ i.source }}</p>
                             <p>{% blocktranslate %}カテゴリー{% endblocktranslate %}: <b>{{ i.category.category }}</b></p>
                             <div class="save" style="font-size: 22px; width: 4%;">
-                                <a href="{% url 'news_app:delete' id=i.id arg=arg %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
+                                <a href="{% url 'news_app:delete' id=i.id arg='history' %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
 
             <!--Bookmark-->
             <div class="bookmark_wrap ">
-                {% for i in news %}
+                {% for i in saved_news %}
                     <div class="row" style="padding: 20px 0px; margin: 0 12px;; border-top: #c1c1c1 solid 1px;">
                         <div class="col-sm-3">
                             <img src="{{ i.photo }}" alt="No photo" style="width: 100%; height: 60%;">
@@ -54,7 +54,7 @@
                             <p>{{ i.source }}</p>
                             <p>{% blocktranslate %}カテゴリー{% endblocktranslate %}: <b>{{ i.category.category }}</b></p>
                             <div class="save" style="font-size: 22px; width: 4%;">
-                                <a href="{% url 'news_app:delete' id=i.id arg=arg %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
+                                <a href="{% url 'news_app:delete' id=i.id arg='saved' %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
                             </div>
 
                         </div>

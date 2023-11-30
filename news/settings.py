@@ -122,12 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ja-ja'
 
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_TZ = True
-
 AUTH_USER_MODEL = 'user.User'
 
 MEDIA_URL = '/media/'

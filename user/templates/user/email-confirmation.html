@@ -9,7 +9,14 @@
     <link rel="stylesheet" href="{% static 'login.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
-
+<body>
+{% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mt-4" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
 <div class="row" style="margin-top: 6%">
     <div class="col-sm-4">
     </div>
