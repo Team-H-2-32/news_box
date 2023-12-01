@@ -18,12 +18,11 @@
                 <a href="{% url 'news_app:home' %}">
                     <img class="nav_bar_logo" src="{% static 'media/logo.png' %}">
                 </a>
-
             </div>
             <div class="col-sm-8" >
             </div>
             <div class="col-sm-1">
-                <form class="language" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <form class="language language_out_option" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}">
                     <select name="language">
                         {% get_current_language as LANGUAGE_CODE %}
@@ -42,10 +41,9 @@
                 {% if request.user.username %}
                     <img class="nav_bar_avtar" src="{{ request.user.profile_pic.url }}">
                     <div class="options_account_list">
-                        <p><a class="option_item" href="{% url 'user:edit_profile' %}">profile edit</a></p>
-                        <p><a class="option_item" href="{% url 'news_app:history' %}">history</a></p>
-                        <p class="language_item_option">
-                            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        <p><a class="option_item" href="{% url 'news_app:history_saved' %}">{% blocktrans %}プロファイル{% endblocktrans %}</a></p>
+                        <div class="language_in_option">
+                            <form class="language" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                                 <input name="next" type="hidden" value="{{ redirect_to }}">
                                 <select name="language">
                                     {% get_current_language as LANGUAGE_CODE %}
@@ -59,14 +57,30 @@
                                 </select>
                                 <input type="submit" value="Go">
                             </form>
-                        </p>
-                        <p class="js-logout"><a class="option_item" href="#">logn out</a></p>
+                        </div>
+                        <p class="js-logout"><a class="option_item" href="{% url 'user:logout' %}">{% blocktrans %}ログアウト{% endblocktrans %}</a></p>
                     </div>
                 {% else %}
                     <img class="nav_bar_avtar" src="{% static 'media/default.jpg' %}">
                     <div class="options_account_list">
-                        <p><a class="option_item" href="{% url 'user:login' %}">logn in</a></p>
-                        <p><a class="option_item" href="{% url 'user:email_confirm' %}">sign in</a></p>
+                        <div class="language_in_option">
+                            <form class="language" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                <input name="next" type="hidden" value="{{ redirect_to }}">
+                                <select name="language">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                            {{ language.name_local }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <input type="submit" value="Go">
+                            </form>
+                        </div>
+                        <p><a class="option_item" href="{% url 'user:login' %}">{% blocktrans %}ログイン{% endblocktrans %}</a></p>
+                        <p><a class="option_item" href="{% url 'user:email_confirm' %}">{% blocktrans %}サインイン{% endblocktrans %}</a></p>
                     </div>
                 {% endif %}
             </div>
@@ -91,6 +105,13 @@
             </div>
         </div>
     </div>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mt-4" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
 
     {% block content %}
 

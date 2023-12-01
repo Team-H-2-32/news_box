@@ -13,10 +13,10 @@
     height: 50px;
     border-radius: 50%;
 }
-..language {
+..language_out_option {
         display: block;
 }
-.language_item_option {
+.language_in_option {
     display: none;
 }
 .option_menu_wrap {
@@ -135,8 +135,8 @@
     border: none;
     position: absolute;
     bottom: -20px;
-    height: 70px;
-    width: 70px;
+    height: 80px;
+    width: 80px;
     right: 60%;
 }
 .plus_button:hover .plus_icon{
@@ -235,6 +235,14 @@
 .login_container {
     border: 1px solid black;
     box-shadow: 0 0 100px 8px #a98fd9;
+    padding: 2%;
+    border: none;
+}
+.login_wrap {
+    margin-top: 6%
+}
+.login_button {
+    width: 30%;
 }
 .login_label {
     font-size: 26px;
@@ -342,6 +350,11 @@
 
 /* Mobile */
 @media only screen and (max-width: 46.1875em) {
+    .login_button {
+        width: 38%;
+        height: 48px;
+    }
+    /* head */
     .container_nav_bar {
         height: 5em;
         position: relation;
@@ -357,7 +370,7 @@
         left: 80%;
     }
     .options_account_list {
-        width: 36%;
+        width: 42%;
         right: 80%;
         top: 125%;
     }
@@ -367,11 +380,17 @@
     .options_account_list p {
         padding: 10px 14px;
     }
-    .language {
+    .language_out_option {
         display: none;
     }
-    .language_item_option {
+    .language_in_option {
         display: block;
+        background-color: #e2d9f3;
+        padding-left: 6px;
+    }
+    .language_in_option select{
+        border: none;
+        box-shadow: 0 0 6px 2px #a98fd9;
     }
     /* home body*/
     .category_followed {
@@ -394,7 +413,19 @@
     }
     .plus_button {
         right: 3%;
+        width: 70px;
+        height: 70px
     }
+    /* log in*/
+    .login_wrap {
+        display: flex;
+        justify-content: center;
+        margin-top: 44%
+    }
+    .login_container {
+        width: 76%;
+    }
+}
 /* Ipad */
 @media only screen and (min-width: 46.1875em) and (max-width: 63.9375em) {
 

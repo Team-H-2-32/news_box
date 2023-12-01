@@ -24,19 +24,23 @@ class EmailConfirmationView(View):
         form = EmailConfirmationForm(data=request.POST)
 
         if form.is_valid():
-            form.save()
             cleaned_email = form.cleaned_data.get('email')
-            user = User.objects.filter(email=cleaned_email).first()
-            code = user.create_verify_code()
-            print(code)
-            login(request, user)
-            # send_email.delay('検証コード', f"あなたの検証コードは {code} です", [cleaned_email])
-            return redirect('user:code_verify')
+            obj = User.objects.filter(email=cleaned_email, registration_complete=True).first()
+            if not obj:
+                form.save()
+                user = User.objects.filter(email=cleaned_email).first()
+                code = user.create_verify_code()
+                print(code)
+                login(request, user)
+                # send_email.delay('検証コード', f"あなたの検証コードは {code} です", [cleaned_email])
+                return redirect('user:code_verify')
+            else:
+                messages.error(request, "Registration is on process. Check your mail for confirmation code or press the resend button")
+                return redirect('user:code_verify')
         else:
-            form = EmailConfirmationForm
-            context = {
-                'form': form,
-            }
+            form = EmailConfirmationForm()
+            context = {'form': form}
+            messages.error(request, "Enter the valid email adress")
             return render(request, 'user/email-confirmation.html', context)
 
 
@@ -71,6 +75,24 @@ class CodeVerifyView(View):
             return render(request, 'user/code-verify.html', context)
 
 
+def resend_code(request):
+    user = request.user
+    if not user.registration_complete:
+        confirmation = UserConfirmation.objects.filter(user=user, expiration_time__gte=datetime.now()).first()
+        if confirmation:
+            messages.error(request, f"You can resend code in {confirmation.expiration_time}")
+            return redirect('user:code_verify')
+        else:
+            code = user.create_verify_code()
+            print(code)
+            # send_email.delay('検証コード', f"あなたの検証コードは {code} です", [cleaned_email])
+            messages.success(request, "We sent you confirmation code again. Please check your mailbox")
+            return redirect('user:code_verify')
+    else:
+        messages.error(request, "Your profile is complete already")
+        return redirect('user:login')
+
+
 class SetPasswordView(LoginRequiredMixin, View):
     def get(self, request):
         form = SetPasswordForm()
@@ -91,6 +113,7 @@ class SetPasswordView(LoginRequiredMixin, View):
                     if password == password_confirm:
                         user.password = password
                         user.save()
+                        user.registration_complete = True
                         login(request, user)
                         return redirect('news_app:home')
                     else:

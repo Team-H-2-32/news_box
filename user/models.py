@@ -11,6 +11,7 @@ class User(AbstractUser, BaseModel):
     followed_categories = models.ManyToManyField(Category, blank=True)
     email = models.EmailField(unique=True, blank=False)
     profile_pic = models.ImageField(upload_to='profile_pics', default='profile_pics/default.jpg', null=True, blank=True)
+    registration_complete = models.BooleanField(default=False)
 
     def check_username(self):
         if not self.username :
