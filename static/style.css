@@ -272,6 +272,9 @@
 }
 
 /* History and Bookmark */
+.HisBook_container{
+    margin-top: 6%;
+}
 .HisBook_edit_btn {
     font-size: 30px;
     margin: 1% 2% 0 0;
@@ -282,6 +285,13 @@
 }
 .HisBook_edit_btn a:hover {
     background-color: #b7a9d0;
+}
+.HisBook_item_pic img {
+    width: 100%;
+    height: 60%;
+}
+.HisBook_item_title{
+    font-size: 22px;
 }
 .title {
     width: 100%;
@@ -456,6 +466,24 @@
         width: 76%;
     }
     /* profile */
+    .HisBook_container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20%;
+    }
+    .HisBook_container .col-sm-6 {
+        width: 90%;
+    }
+    .HisBook_item_pic {
+        margin-bottom: 20px;
+    }
+    .HisBook_item_pic img {
+        width: 100%;
+        height: 100%;
+    }
+    .HisBook_item_title{
+        font-size: 20px;
+    }
 }
 /* Ipad */
 @media only screen and (min-width: 46.1875em) and (max-width: 63.9375em) {
