@@ -17,8 +17,15 @@
                     </button>
                 </a>
             {% endfor %}
+            <div class="col-sm-3 wrap_plus_button_mobile">
+                <a href="{% url 'news_app:categories' %}">
+                <button class="hover_color_button primary_color plus_button">
+                    <i class="fa-solid fa-plus plus_icon"></i>
+                </button>
+                </a>
         </div>
-        <div class="col-sm-3 wrap_plus_button">
+        </div>
+        <div class="col-sm-3 wrap_plus_button_pc">
             <a href="{% url 'news_app:categories' %}">
             <button class="hover_color_button primary_color plus_button">
                 <i class="fa-solid fa-plus plus_icon"></i>

@@ -87,9 +87,9 @@
         </div>
     </div>
     <div class="container_logout_verify">
-        <div class="row">
+        <div class="row" style="justify-content: center;">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4 js-container">
+            <div class="col-sm-4 js-logout-container">
                 <h3 class="logout_notify">本当にログアウトしますか？</h3>
                 <div class="row">
                     <button class="col-sm-6 confirm_button yes_button">
@@ -143,7 +143,7 @@
 <script>
     const logoutBtn = document.querySelector('.js-logout')
     const logoutConfirm = document.querySelector('.container_logout_verify')
-    const container = document.querySelector('.js-container')
+    const container = document.querySelector('.js-logout-container')
     function showBtnConfirm() {
         logoutConfirm.classList.add('open')
     }

@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     border-bottom: 6px solid white;
-    z-index: 9;
+    z-index: 3;
 }
 .nav_bar_logo {
     width: 200px; height: 63px; margin: 6px 16px
@@ -127,8 +127,12 @@
     transition: ease-in 200ms,
     ease-out 200ms;
 }
-.wrap_plus_button {
+.wrap_plus_button_pc {
     position: relative;
+    display: block;
+}
+.wrap_plus_button_mobile {
+    display: none
 }
 .plus_button {
     border-radius: 50%;
@@ -195,18 +199,18 @@
     right: 0;
     background-color: rgba(226, 217, 243, 0.8);
     display: none;
-    z-index: 3;
+    z-index: 9;
 }
 .container_logout_verify.open{
     display: block;
 }
-.js-container {
+.js-logout-container {
     margin-top: 12%;
     background-color: #ffff;
     box-shadow: 0 0 60px 20px #a98fd9;
     padding: 2% 2% 4% 2%;
 }
-.js-container div {
+.js-logout-container div {
     margin-left: 22%;
 }
 
@@ -392,6 +396,24 @@
         border: none;
         box-shadow: 0 0 6px 2px #a98fd9;
     }
+    .container_logout_verify .row {
+        margin-top: 20%;
+    }
+    .js-logout-container {
+        width: 86%;
+        margin-top: 30%;
+    }
+    .js-logout-container .row {
+        justify-content: space-evenly;
+        margin: 0;
+    }
+    .logout_notify {
+        font-size: 34px;
+    }
+    .confirm_button {
+        width: 28%;
+    }
+
     /* home body*/
     .category_followed {
         margin: 80px 0 24px 0;
@@ -408,23 +430,32 @@
     .category_item p {
         font-size: 30px;
     }
-    .wrap_plus_button {
-        height: 110px;
+    .wrap_plus_button_pc {
+        display: none;
     }
-    .plus_button {
+    .wrap_plus_button_mobile {
+        height: 110px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .plus_button_mobile {
         right: 3%;
         width: 70px;
         height: 70px
+    }
+    .plus_button {
+        position: static;
     }
     /* log in*/
     .login_wrap {
         display: flex;
         justify-content: center;
-        margin-top: 44%
+        margin-top: 28%
     }
     .login_container {
         width: 76%;
     }
+    /* profile */
 }
 /* Ipad */
 @media only screen and (min-width: 46.1875em) and (max-width: 63.9375em) {
