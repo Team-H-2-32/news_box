@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block content %}
-<div class="row" style="margin-top: 5%">
+<div class="row container_profile">
     <div class="col-sm-4"></div>
     <div class="col-sm-4 login_container" style="padding: 2%; border: none">
         <p class="login_label">プロファイル編集</p>
@@ -14,7 +14,7 @@
             <input type="file" name="profile_pic" accept="image/*" id="id_profile_pic" style="display: none;">
             <div style="display: flex; justify-content: center; position: relative">
                 <img id="profilePicPreview" src="{% if request.user.profile_pic %}{{ request.user.profile_pic.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="Profile Preview" style="width: 200px; height: 200px; border-radius: 50%;">
-                <button type="button" id="changeProfilePicBtn" style="border: none; border-radius: 50%; position: absolute; top: 78%; right: 32%; box-shadow: 0px 0px 12px 6px #a98fd9;">
+                <button type="button" id="changeProfilePicBtn" style="width: 24px; height: 24px; border: none; border-radius: 50%; position: absolute; top: 78%; right: 32%; box-shadow: 0px 0px 12px 6px #a98fd9;">
                 <i class="fa-regular fa-pen-to-square"></i>
             </button>
             </div>

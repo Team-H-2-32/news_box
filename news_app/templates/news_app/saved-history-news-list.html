@@ -4,66 +4,62 @@
 
 {% block content %}
 
-<div class="row HisBook_container">
-    <div class="col-sm-3"></div>
-    <div class="col-sm-6" style="box-shadow: 0px 0px 22px 0 #a98fd9; padding: 0;">
-        <div class="header_HisBook" style="display: flex; justify-content: space-around; background-color: #a98fd9; width: 100%; height: 180px;">
-            <img id="profilePicPreview" src="{% if request.user.profile_pic %}{{ request.user.profile_pic.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="Profile Preview" style="width: 120px; height: 120px; border-radius: 50%; margin: 28px;">
-            <div style="width: 70%;">
-                <p style="font-size: 40px; margin: 32px 0 0 0; color: white;">{{request.user}}</p>
-                <p style="font-size: 22px; font-weight: 700; color: white;">{{ request.user.email }}</p>
-            </div>
-            <p class="HisBook_edit_btn">
-                <a href="{% url 'user:edit_profile' %}"><i class="fa-solid fa-pen-to-square"></i></a>
-            </p>
+<div class="HisBook_container">
+    <div class="header_HisBook" style="display: flex; justify-content: space-around; background-color: #a98fd9; width: 100%; height: 180px;">
+        <img id="profilePicPreview" src="{% if request.user.profile_pic %}{{ request.user.profile_pic.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="Profile Preview">
+        <div style="width: 70%;">
+            <p style="font-size: 40px; margin: 32px 0 0 0; color: white;">{{request.user}}</p>
+            <p style="font-size: 22px; font-weight: 700; color: white;">{{ request.user.email }}</p>
         </div>
-        <div class="body_HisBook">
-            <div class="button_wrap" style="display: flex; justify-content: center; background-color: #b7a9d0;">
-                <p class="history_button fromRightToLeft title active">{% blocktrans %}履歴{% endblocktrans %}</p>
-                <p class="bookmark_button fromLeftToRight title ">{% blocktrans %}ブックマーク{% endblocktrans %}</p>
-            </div>
+        <p class="HisBook_edit_btn">
+            <a href="{% url 'user:edit_profile' %}"><i class="fa-solid fa-pen-to-square"></i></a>
+        </p>
+    </div>
+    <div class="body_HisBook">
+        <div class="button_wrap" style="display: flex; justify-content: center; background-color: #b7a9d0;">
+            <p class="history_button fromRightToLeft title active">{% blocktrans %}履歴{% endblocktrans %}</p>
+            <p class="bookmark_button fromLeftToRight title ">{% blocktrans %}ブックマーク{% endblocktrans %}</p>
+        </div>
 
-            <!--History-->
-            <div class="history_wrap active">
-                {% for i in history %}
-                    <div class="row" style="padding: 20px 0px; margin: 0 12px;; border-top: #c1c1c1 solid 1px;">
-                        <div class="col-sm-3 HisBook_item_pic">
-                            <img src="{{ i.photo }}" alt="No photo">
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="HisBook_item_title"><a href="{% url 'news_app:news_detail' i.id %}"> {% blocktranslate %}タイトル{% endblocktranslate %}: {{ i.title }}</a></p>
-                            <p>{{ i.source }}</p>
-                            <p>{% blocktranslate %}カテゴリー{% endblocktranslate %}: <b>{{ i.category.category }}</b></p>
-                            <div class="save" style="font-size: 22px; width: 4%;">
-                                <a href="{% url 'news_app:delete' id=i.id arg='history' %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
-                            </div>
+        <!--History-->
+        <div class="history_wrap active">
+            {% for i in history %}
+                <div class="row" style="padding: 20px 0px; margin: 0 12px;; border-top: #c1c1c1 solid 1px;">
+                    <div class="col-sm-3 HisBook_item_pic">
+                        <img src="{{ i.photo }}" alt="No photo">
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="HisBook_item_title"><a href="{% url 'news_app:news_detail' i.id %}"> {% blocktranslate %}タイトル{% endblocktranslate %}: {{ i.title }}</a></p>
+                        <p>{{ i.source }}</p>
+                        <p>{% blocktranslate %}カテゴリー{% endblocktranslate %}: <b>{{ i.category.category }}</b></p>
+                        <div class="save" style="font-size: 22px; width: 4%;">
+                            <a href="{% url 'news_app:delete' id=i.id arg='history' %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
+        </div>
 
-            <!--Bookmark-->
-            <div class="bookmark_wrap ">
-                {% for i in saved_news %}
-                    <div class="row" style="padding: 20px 0px; margin: 0 12px;; border-top: #c1c1c1 solid 1px;">
-                        <div class="col-sm-3 HisBook_item_pic">
-                            <img src="{{ i.photo }}" alt="No photo">
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="HisBook_item_title"><a href="{% url 'news_app:news_detail' i.id %}"> {% blocktranslate %}タイトル{% endblocktranslate %}: {{ i.title }}</a></p>
-                            <p>{{ i.source }}</p>
-                            <p>{% blocktranslate %}カテゴリー{% endblocktranslate %}: <b>{{ i.category.category }}</b></p>
-                            <div class="save" style="font-size: 22px; width: 4%;">
-                                <a href="{% url 'news_app:delete' id=i.id arg='saved' %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
-                            </div>
-
-                        </div>
+        <!--Bookmark-->
+        <div class="bookmark_wrap ">
+            {% for i in saved_news %}
+                <div class="row" style="padding: 20px 0px; margin: 0 12px;; border-top: #c1c1c1 solid 1px;">
+                    <div class="col-sm-3 HisBook_item_pic">
+                        <img src="{{ i.photo }}" alt="No photo">
                     </div>
-                {% endfor %}
-            </div>
+                    <div class="col-sm-9">
+                        <p class="HisBook_item_title"><a href="{% url 'news_app:news_detail' i.id %}"> {% blocktranslate %}タイトル{% endblocktranslate %}: {{ i.title }}</a></p>
+                        <p>{{ i.source }}</p>
+                        <p>{% blocktranslate %}カテゴリー{% endblocktranslate %}: <b>{{ i.category.category }}</b></p>
+                        <div class="save" style="font-size: 22px; width: 4%;">
+                            <a href="{% url 'news_app:delete' id=i.id arg='saved' %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
-    <div class="col-sm-3"></div>
 </div>
 <script>
     const HisBtn = document.querySelector(".history_button")
