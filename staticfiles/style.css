@@ -19,41 +19,16 @@
     display: block;
 }
 .loading {
-    margin: 80% auto;
+    margin: 20% auto;
     position: relative;
     width: 7rem;
     height: 7rem;
 }
-
-.loading div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: rotate(calc(var(--value) * 45deg));
+.loading img {
+    width: 100%
 }
 
-.loading div:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 14px;
-    height: 14px;
-    border: 4px solid #00aefd;
-    border-radius: 5rem;
-    filter: hue-rotate(calc(var(--value) * 45deg));
-    animation: loading 1s infinite;
-    animation-delay: calc(var(--value) * 0.125s);
-    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-}
 
-@keyframes loading {
-    to {
-        transform: scale(0);
-    }
-}
 /*header*/
 .container_nav_bar {
     position: fixed;
@@ -483,7 +458,9 @@
 /* Mobile */
 @media only screen and (max-width: 46.1875em) {
     /* loading */
-
+    .loading {
+        margin: 80% auto;
+    }
     /* head */
     .container_nav_bar {
         height: 5em;
