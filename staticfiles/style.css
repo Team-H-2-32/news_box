@@ -13,6 +13,10 @@
     background-color: rgba(226, 217, 243, 0.8);
     z-index: 9;
     display: none;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+.loading_wrap.open {
+    display: block;
 }
 .loading {
     margin: 80% auto;

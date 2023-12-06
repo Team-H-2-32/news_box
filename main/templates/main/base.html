@@ -124,6 +124,16 @@
     {% endblock %}
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
+    window.addEventListener("load", () => {
+        const loader = document.querySelector(".loading_wrap");
+        loader.classList.add("open");
+        setTimeout(() => {
+            loader.classList.remove("open");
+        }, 500)
+    });
+</script>
+
+<script>
     const optionBtn = document.querySelector('.js-option-button')
     const modalContainer = document.querySelector('.js-modal-container')
     const optionOpen = document.querySelector('.options_account_list')
