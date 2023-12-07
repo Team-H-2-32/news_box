@@ -27,8 +27,42 @@
 .loading img {
     width: 100%
 }
-
-
+/*
+.skeletor_loading img, .skeletor_loading h4, .skeletor_loading p{
+    position: relative;
+}
+.skeletor_loading img::before, .skeletor_loading h4::before, .skeletor_loading p::before{
+    background-color: #ddddddd;
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.skeletor_loading img::after, .skeletor_loading h4::after, .skeletor_loading p::after{
+    background-color: #ddddddd;
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, #ddddddd, #ffffff 50%, #ddddddd);
+    animation: skeletorLoading 2s infinite alternate;
+}
+@keyframes skeletorLoading {
+    from {
+        left: -50%;
+    } to {
+        left: 50%;
+    }
+}
+*/
 /*header*/
 .container_nav_bar {
     position: fixed;
