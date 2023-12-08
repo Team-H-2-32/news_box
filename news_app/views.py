@@ -4,9 +4,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.utils.translation import get_language
+
 from main.models import Category
 from django.views import View
-
+from news.microsoft_translator_api import translate
 from news_app.forms import CommentForm
 from news_app.models import News, Comment, History, SavedNews
 
@@ -29,10 +31,15 @@ def home_view(request):
 class NewsView(View):
     def get(self, request):
         user = request.user
-        categories = user.followed_categories.all()
+        categories = ''
+        if user.username:
+            categories = user.followed_categories.all()
+        else:
+            categories = Category.objects.all()
 
         context = {
-            'categories': categories
+            'categories': categories,
+            'selected_category': request.GET.get('category', None)
         }
 
         return render(request, 'news_app/news_page.html', context)
@@ -65,36 +72,48 @@ def get_news_view(request, category):
     return JsonResponse(context)
 
 
-class DetailPageView(LoginRequiredMixin, View):
+class DetailPageView(View):
     def get(self, request, id):
         form = CommentForm()
         user = request.user
         news = News.objects.filter(id=id).first()
         comments = Comment.objects.filter(news=news)
-        history_check = History.objects.filter(user=user, news=news).first()
-        saved_check = SavedNews.objects.filter(user=user, news=news).first()
-        saved = False
+        context = {}
+        if user.is_authenticated:
+            history_check = History.objects.filter(user=user, news=news).first()
+            saved_check = SavedNews.objects.filter(user=user, news=news).first()
+            saved = False
 
-        if news:
-            if saved_check:
-                saved = True
-            if not history_check:
-                History.objects.create(
-                    user=user,
-                    news=news
-                )
+            if news:
+                if saved_check:
+                    saved = True
+                if not history_check:
+                    History.objects.create(
+                        user=user,
+                        news=news
+                    )
 
+                context = {
+                    'form': form,
+                    'news': news,
+                    'comments': comments,
+                    'saved': saved,
+                    'arg': 'saved-detail'
+                }
+
+                return render(request, 'news_app/news-detail.html', context)
+            else:
+                return redirect('main:error')
+        else:
             context = {
                 'form': form,
                 'news': news,
                 'comments': comments,
-                'saved': saved,
                 'arg': 'saved-detail'
             }
 
             return render(request, 'news_app/news-detail.html', context)
-        else:
-            return redirect('main:error')
+
 
     def post(self, request, id):
         form = CommentForm(data=request.POST)
@@ -115,20 +134,23 @@ class DetailPageView(LoginRequiredMixin, View):
 
 def save_view(request, id):
     user = request.user
-    news = News.objects.filter(id=id).first()
-    obj = SavedNews.objects.filter(user=user, news=news).first()
 
-    if news:
-            if not obj:
-                SavedNews.objects.create(
-                    user=user,
-                    news=news
-                )
-            else:
-                obj.delete()
-            return redirect('news_app:news_detail', id=news.id)
+    if user.username:
+        news = News.objects.filter(id=id).first()
+        obj = SavedNews.objects.filter(user=user, news=news).first()
+        if news:
+                if not obj:
+                    SavedNews.objects.create(
+                        user=user,
+                        news=news
+                    )
+                else:
+                    obj.delete()
+                return redirect('news_app:news_detail', id=news.id)
+        else:
+            return print('error')
     else:
-        return print('error')
+        return redirect('user:login')
 
 
 def history_saved_view(request):
@@ -175,10 +197,13 @@ def category_list_view(request):
 def follow_view(request, category):
     user = request.user
     ctgry = Category.objects.get(category_en=category)
+    if user.is_authenticated:
+        user.followed_categories.add(ctgry)
+        messages.success(request, f"{ctgry.category} added to followed list")
+        return redirect('news_app:categories')
+    else:
+        return redirect('user:login')
 
-    user.followed_categories.add(ctgry)
-    messages.success(request, f"{ctgry.category} added to followed list")
-    return redirect('news_app:categories')
 
 def unfollow_view(request, category):
     user = request.user
@@ -187,5 +212,26 @@ def unfollow_view(request, category):
     messages.info(request, f"{ctgry.category} removed from followed list")
     return redirect('news_app:categories')
 
+
+def comment_translation_view(request, comment_id):
+    current_language = get_language()
+    comment = Comment.objects.get(id=comment_id)
+    translated_comment = translate(current_language, comment.comment)
+
+    context = {
+        'translated_comment': translated_comment
+    }
+
+    return JsonResponse(context)
+
+
+def comment_delete_view(request, comment_id):
+    user = request.user
+    comment = Comment.objects.get(id=comment_id)
+    if user == comment.user:
+        comment.delete()
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    else:
+        return redirect('main:error')
 
 

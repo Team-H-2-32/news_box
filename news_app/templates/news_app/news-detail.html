@@ -39,6 +39,7 @@
                 <p style="font-size: 22px; margin: 26px 10px 10px 2px; font-weight: 600;">件</p>
             </div>
             <div class="comment_body">
+                {% if user.is_authenticated %}
                 <form method="post" style="display: flex; flex-direction: column; align-items: end;">
                     {% csrf_token %}
                     <div style="padding: 0 3% 0 3%; width: 100%; ">
@@ -46,6 +47,7 @@
                     </div>
                     <button class="category_button" type="submit">{% blocktrans %}保存する{% endblocktrans %}</button>
                 </form>
+                {% endif %}
             </div>
         </div>
 
@@ -53,14 +55,41 @@
         <ul style=" margin: 4% 0 30% 0;">
         {% for comment in comments %}
             <li style="list-style: none;">
+                <div class="comments">
                 <span style="font-size: 16px; background-color: #a98fd9; border-top-left-radius: 10px; border-bottom-right-radius: 10px; padding: 1px 8px;">{{ comment.user.username }}</span>
                 <span style="font-size: 12px; margin-left: 6px;">{{ comment.created_at }}</span>
-                <p style="word-wrap: break-word"> {{ comment.comment }}</p>
+                <p id="comment-{{ comment.id }}" style="word-wrap: break-word"> {{ comment.comment }}</p>
+                <button type="button" class="btn btn-link translator-btn" comment-id="{{ comment.id }}">
+                    <i class="fa-solid fa-language" style="color: #a98fd9;"></i>
+                </button>
+                {% if comment.user.id == request.user.id %}
+                    <a href="{% url 'news_app:delete_comment' comment_id=comment.id %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
+                {% endif %}
+                </div>
             </li>
         {% endfor %}
         </ul>
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.translator-btn').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var commentId = button.getAttribute('comment-id');
+
+                fetch('../../../translate-comment/' + commentId + '/')
+                    .then(response => response.json())
+                    .then(data => {
+                        var originalComment = document.querySelector('#comment-' + commentId);
+                        if (originalComment) {
+                            originalComment.innerText = data.translated_comment;
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>
 
 {% endblock %}

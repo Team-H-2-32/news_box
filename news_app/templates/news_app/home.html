@@ -11,14 +11,14 @@
         <div class="col-sm-6">
             <p class="category_followed">{% blocktrans %}フォローしているカテゴリー{% endblocktrans %}</p>
             {% for c in categories %}
-                <a href="{% url 'news_app:news' %}" style="text-decoration: none">
+                <a href="{% url 'news_app:news' %}?category={{ c.category_en }}" style="text-decoration: none">
                     <button class="border_radius_button hover_color_button category_item">
                          <p>{{ c.category }}</p>
                     </button>
                 </a>
             {% endfor %}
             <div class="col-sm-3 wrap_plus_button_mobile">
-                <a href="{% url 'news_app:categories' %}">
+                <a href="{% url 'news_app:news' %}?category={{ c.category_en }}" style="text-decoration: none">
                 <button class="hover_color_button primary_color plus_button">
                     <i class="fa-solid fa-plus plus_icon"></i>
                 </button>

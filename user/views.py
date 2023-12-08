@@ -24,7 +24,7 @@ class EmailConfirmationView(View):
         form = EmailConfirmationForm(data=request.POST)
 
         if form.is_valid():
-            cleaned_email = form.cleaned_data.get('email')
+            cleaned_email = form.cleaned_data.get('email').lower()
             obj = User.objects.filter(email=cleaned_email, registration_complete=True).first()
             if not obj:
                 form.save()
@@ -139,7 +139,7 @@ class LoginView(View):
     def post(self, request):
         form = LoginForm(data=request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('email')
+            email = form.cleaned_data.get('email').lower()
             password = form.cleaned_data.get('password')
 
             user = User.objects.filter(email=email).first()

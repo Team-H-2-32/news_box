@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import home_view, NewsView, DetailPageView, save_view, get_news_view, history_saved_view, \
-    delete_view, category_list_view, follow_view, unfollow_view
+    delete_view, category_list_view, follow_view, unfollow_view, comment_translation_view, comment_delete_view
 
 app_name = 'news_app'
 
@@ -15,6 +15,8 @@ urlpatterns = [
     path('news/categories/', category_list_view, name='categories'),
     path('follow/<str:category>/', follow_view, name='follow'),
     path('unfollow/<str:category>/', unfollow_view, name='unfollow'),
+    path('translate-comment/<uuid:comment_id>/', comment_translation_view, name='comment_translate'),
+    path('delete-comment/<uuid:comment_id>/', comment_delete_view, name='delete_comment'),
 
 
 ]
