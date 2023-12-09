@@ -23,12 +23,12 @@
     <div class="col-sm-4 login_container" style="padding: 2%; border: none">
         <form method="post">
             {% csrf_token %}
-            <label for="{{ form.code.id_for_label }}" class="label_form">コード</label>
+            <label for="{{ form.code.id_for_label }}" class="label_form">{% blocktrans %}コード{% endblocktrans %}</label>
                 <br>
             <input type="text" name="{{ form.code.name }}" id="{{ form.code.id_for_label }}" class="input_form"/>
             <div style="display: flex; justify-content: space-between; margin-top: 4%;">
-                <p><a href="{% url 'user:resend_code' %}" style="font-size: 16px;">コードをもう一度送信</a></p>
-                <button class="category_button hover_color_button"  type="submit" style="width: 30%">次に</button>
+                <p><a href="{% url 'user:resend_code' %}" style="font-size: 16px;">{% blocktrans %}コードをもう一度送信{% endblocktrans %}</a></p>
+                <button class="category_button hover_color_button"  type="submit" style="width: 30%">{% blocktrans %}次へ{% endblocktrans %}</button>
             </div>
         </form>
     </div>

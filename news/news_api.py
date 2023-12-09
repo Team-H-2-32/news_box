@@ -7,7 +7,7 @@ def top_headlines(api_key, category):
     api = NewsApiClient(api_key=api_key)
     dic = api.get_top_headlines(
         category=category,
-        language='jp',
+        language='ja',
     )
     return dic
 

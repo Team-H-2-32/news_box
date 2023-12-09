@@ -23,21 +23,21 @@
 
     </div>
     <div class="col-sm-4 login_container">
-        <p class="login_label">ログイン</p>
+        <p class="login_label">{% blocktrans %}ログイン{% endblocktrans %}</p>
         <form method="post">
             {% csrf_token %}
-            <label for="{{ form.email.id_for_label }}" class="label_form">メールアドレス</label>
+            <label for="{{ form.email.id_for_label }}" class="label_form">{% blocktrans %}メールアドレス{% endblocktrans %}</label>
                 <br>
             <input type="text" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" class="input_form"/>
             <br>
-            <label for="{{ form.password.id_for_label }}" class="label_form">パスワード</label>
+            <label for="{{ form.password.id_for_label }}" class="label_form">{% blocktrans %}パスワード{% endblocktrans %}</label>
                 <br>
             <input type="password" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}" class="input_form"/>
             <div style="display: flex; justify-content: center; margin-top: 4%;">
-                <button class="category_button hover_color_button login_button"  type="submit">ログイン</button>
+                <button class="category_button hover_color_button login_button"  type="submit">{% blocktrans %}ログイン{% endblocktrans %}</button>
             </div>
             <div style="display: flex; justify-content: center; margin-top: 8%;">
-                <p><a href="{% url 'user:email_confirm' %}">無料会員</a> / <a href="{% url 'user:email_confirm' %}">パスワードを忘れた方</a></p>
+                <p><a href="{% url 'user:email_confirm' %}">{% blocktrans %}無料会員{% endblocktrans %}</a> / <a href="{% url 'user:email_confirm' %}">{% blocktrans %}パスワードを忘れた方{% endblocktrans %}</a></p>
             </div>
         </form>
     </div>

@@ -87,13 +87,13 @@
     </div>
     <div class="container_logout_verify">
             <div class="col-sm-4 js-logout-container">
-                <h3 class="logout_notify">本当にログアウトしますか？</h3>
+                <h3 class="logout_notify">{% blocktrans %}ログアウトしてもよろしいですか？{% endblocktrans %}</h3>
                 <div class="row">
                     <button class="col-sm-6 confirm_button yes_button">
-                        <a class="yes_button_a" href="{% url 'user:logout' %}"> はい</a>
+                        <a class="yes_button_a" href="{% url 'user:logout' %}">{% blocktrans %}はい{% endblocktrans %}</a>
                     </button>
                     <button class="col-sm-6 confirm_button no_button">
-                        <a class="no_button_a" href="{% url 'news_app:home' %}"> いいえ</a>
+                        <a class="no_button_a" href="{% url 'news_app:home' %}">{% blocktrans %}いいえ{% endblocktrans %}</a>
                     </button>
                 </div>
             </div>

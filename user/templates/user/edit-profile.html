@@ -6,7 +6,7 @@
 <div class="row container_profile">
     <div class="col-sm-4"></div>
     <div class="col-sm-4 login_container" style="padding: 2%; border: none">
-        <p class="login_label">プロファイル編集</p>
+        <p class="login_label">{% blocktrans %}プロファイル編集{% endblocktrans %}</p>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 <!--        change picture-->
@@ -25,10 +25,10 @@
             </div>
             <br>
             <div style="display: flex; justify-content: center;">
-                <button class="category_button hover_color_button"  type="submit" style="width: 30%">保存</button>
+                <button class="category_button hover_color_button"  type="submit" style="width: 30%">{% blocktrans %}保存{% endblocktrans %}</button>
             </div>
             <div style="display: flex; justify-content: center; margin-top: 8%;">
-                <p><a href="{% url 'user:change_pass' %}">Change password</a></p>
+                <p><a href="{% url 'user:change_pass' %}">{% blocktrans %}パスワード交換{% endblocktrans %}</a></p>
             </div>
         </form>
     </div>

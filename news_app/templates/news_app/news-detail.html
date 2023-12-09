@@ -23,7 +23,7 @@
                             </div>
                         {% endif %}
                     </div>
-                    <button class="category_button more_read_button"><a href="{{ news.url }}" style="text-decoration: none; font-size: 22px; color: #e2d9f3;">{% blocktrans %} 続きを読む {% endblocktrans %}</a></button>
+                    <button class="category_button more_read_button"><a href="{{ news.url }}" style="text-decoration: none; font-size: 22px; color: #e2d9f3;">{% blocktrans %}続きを読む{% endblocktrans %}</a></button>
                 </div>
             </div>
         </div>
@@ -34,9 +34,9 @@
                 <p style="font-size: 40px; margin: 8px 10px 0 20px;">
                     <i class="fa-regular fa-comments"></i>
                 </p>
-                <p style="font-size: 22px; margin: 26px 10px 10px 6px; font-weight: 600;">コメント</p>
+                <p style="font-size: 22px; margin: 26px 10px 10px 6px; font-weight: 600;">{% blocktrans %}コメント{% endblocktrans %}</p>
                 <p style="font-size: 26px; margin: 23px 0 10px 6px; font-weight: 600;">{{ comments|length }}</p>
-                <p style="font-size: 22px; margin: 26px 10px 10px 2px; font-weight: 600;">件</p>
+                <p style="font-size: 22px; margin: 26px 10px 10px 2px; font-weight: 600;">{% blocktrans %}件{% endblocktrans %}</p>
             </div>
             <div class="comment_body">
                 {% if user.is_authenticated %}

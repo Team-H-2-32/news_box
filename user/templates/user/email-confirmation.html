@@ -22,14 +22,14 @@
     <div class="col-sm-4">
     </div>
     <div class="col-sm-4 login_container">
-        <p class="login_label">アカウントを作成する</p>
+        <p class="login_label">{% blocktrans %}アカウントを作成する{% endblocktrans %}</p>
         <form method="post">
             {% csrf_token %}
-            <label for="{{ form.email.id_for_label }}" class="label_form">メールアドレス</label>
+            <label for="{{ form.email.id_for_label }}" class="label_form">{% blocktrans %}メールアドレス{% endblocktrans %}</label>
                 <br>
             <input type="text" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" class="input_form"/>
             <div style="display: flex; justify-content: center; margin-top: 4%;">
-                <button class="category_button hover_color_button login_button"  type="submit" style="width: 30%">次に</button>
+                <button class="category_button hover_color_button login_button"  type="submit" style="width: 30%">{% blocktrans %}次へ{% endblocktrans %}</button>
             </div>
         </form>
     </div>
