@@ -179,7 +179,7 @@ def delete_view(request, id, arg):
         obj.delete()
         return redirect('news_app:history_saved')
     elif arg == 'history':
-        obj = History.objects.get(news=news)
+        obj = History.objects.filter(news=news).first()
         obj.delete()
         return redirect('news_app:history_saved')
 
