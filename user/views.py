@@ -9,7 +9,7 @@ from django.views import View
 
 from .forms import EmailConfirmationForm, CodeVerifyForm, SetPasswordForm, LoginForm, EditProfileForm, ChangePassForm
 from .models import User, UserConfirmation
-# from news.task import send_email
+from news.task import send_email
 
 
 class EmailConfirmationView(View):
@@ -33,6 +33,7 @@ class EmailConfirmationView(View):
                 print(code)
                 login(request, user)
                 # send_email.delay('検証コード', f"あなたの検証コードは {code} です", [cleaned_email])
+                send_email('検証コード', f"あなたの検証コードは {code} です", [cleaned_email])
                 return redirect('user:code_verify')
             else:
                 messages.error(request, "Registration is on process. Check your mail for confirmation code or press the resend button")
@@ -84,8 +85,10 @@ def resend_code(request):
             return redirect('user:code_verify')
         else:
             code = user.create_verify_code()
+            email = user.email
             print(code)
             # send_email.delay('検証コード', f"あなたの検証コードは {code} です", [cleaned_email])
+            send_email('検証コード', f"あなたの検証コードは {code} です", [email])
             messages.success(request, "We sent you confirmation code again. Please check your mailbox")
             return redirect('user:code_verify')
     else:
