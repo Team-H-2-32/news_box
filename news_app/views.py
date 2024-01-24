@@ -171,11 +171,11 @@ def history_saved_view(request):
 def delete_view(request, id, arg):
     news = News.objects.get(id=id)
     if arg == 'saved-detail':
-        obj = SavedNews.objects.get(news=news)
+        obj = SavedNews.objects.filter(news=news).first()
         obj.delete()
         return redirect('news_app:news_detail', id=id)
     elif arg == 'saved':
-        obj = SavedNews.objects.get(news=news)
+        obj = SavedNews.objects.filter(news=news).first()
         obj.delete()
         return redirect('news_app:history_saved')
     elif arg == 'history':
