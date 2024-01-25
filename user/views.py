@@ -149,13 +149,11 @@ class LoginView(View):
 
             if user:
                 if user.own_check_password(password):
-                    login(request, user)  # Log the user in
+                    login(request, user)
                     return redirect('news_app:home')
                 else:
-                    print('No password')
                     return redirect('main:error')
             else:
-                print('no USer')
                 return redirect('main:error')
         else:
             form = LoginForm()
