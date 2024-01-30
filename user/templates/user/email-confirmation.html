@@ -11,31 +11,35 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-{% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} mt-4" role="alert">
-            {{ message }}
-        </div>
-        {% endfor %}
-    {% endif %}
 <div class="row login_wrap">
     <div class="col-sm-4">
     </div>
     <div class="col-sm-4 login_container">
         <p class="login_label">{% blocktrans %}アカウントを作成する{% endblocktrans %}</p>
-        <form method="post">
+        <form method="post" id="email-form">
             {% csrf_token %}
             <label for="{{ form.email.id_for_label }}" class="label_form">{% blocktrans %}メールアドレス{% endblocktrans %}</label>
-                <br>
-            <input type="text" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" class="input_form"/>
+            <br>
+            <input type="text" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" class="input_form" required />
             <div style="display: flex; justify-content: center; margin-top: 4%;">
-                <button class="category_button hover_color_button login_button"  type="submit" style="width: 30%">{% blocktrans %}次へ{% endblocktrans %}</button>
+                <button class="category_button hover_color_button login_button" type="submit" style="width: 30%">{% blocktrans %}次へ{% endblocktrans %}</button>
             </div>
         </form>
     </div>
     <div class="col-sm-4">
-
     </div>
 </div>
+
+<script>
+document.getElementById('email-form').addEventListener('submit', function(event) {
+    var emailValue = document.querySelector('#{{ form.email.id_for_label }}').value;
+
+    if (!emailValue) {
+        document.getElementById('error-message').style.display = 'block';
+        event.preventDefault();
+    }
+});
+</script>
+
 </body>
 </html>

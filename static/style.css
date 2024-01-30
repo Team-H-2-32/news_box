@@ -273,7 +273,7 @@
 .js-logout-container {
     margin-top: 12%;
     width: 600px;
-    height: 220px;
+    height: 270px;
     background-color: #ffff;
     box-shadow: 0 0 60px 20px #a98fd9;
     padding: 2% 2% 4% 2%;
@@ -488,6 +488,49 @@
     box-shadow: 0 0 20px 8px;
     transition: 0.1s
 }
+/* Error */
+    .ErrorBody {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin-top: 110px;
+        padding: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .error-container {
+        padding: 50px;
+        max-width: 700px;
+        background-color: #fff;
+        box-shadow: 0 0 100px 8px #a98fd9;
+        width: 100%;
+        text-align: center;
+    }
+    .error-icon {
+        color: #f00;
+        font-size: 52px;
+    }
+    .error-message {
+        color: #333;
+        font-size: 26px;
+        margin-top: 10px;
+    }
+    .ComeBackButton {
+        font-size: 32px;
+        padding: 6px 20px;
+        margin-top: 36px;
+        border: none;
+        background: white;
+        box-shadow: 0 0 36px 10px #a98fd9;
+        border-top-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    .ComeBackButton:hover {
+        background-color: #bca8e1;
+        box-shadow: 0 0 36px 10px #a98fd9;
+        transition: 0.3s;
+        cursor: pointer;
+    }
 
 /* Mobile */
 @media only screen and (max-width: 46.1875em) {
