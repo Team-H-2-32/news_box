@@ -7,7 +7,8 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.views import View
 
-from .forms import EmailConfirmationForm, CodeVerifyForm, SetPasswordForm, LoginForm, EditProfileForm, ChangePassForm
+from .forms import EmailConfirmationForm, CodeVerifyForm, SetPasswordForm, LoginForm, EditProfileForm, ChangePassForm, \
+    ForgotPasswordForm
 from .models import User, UserConfirmation
 from news.task import send_email
 
@@ -42,6 +43,35 @@ class EmailConfirmationView(View):
             form = EmailConfirmationForm()
             context = {'form': form}
             messages.error(request, "Enter the valid email adress")
+            return render(request, 'user/email-confirmation.html', context)
+
+
+class ForgotPassword(View):
+    def get(self, request):
+        form = ForgotPasswordForm
+        context = {
+            'form': form,
+        }
+        return render(request, 'user/pass_forgot.html', context)
+
+    def post(self, request):
+        form = ForgotPasswordForm(data=request.POST)
+
+        if form.is_valid():
+            cleaned_email = form.cleaned_data.get('email').lower()
+            obj = User.objects.filter(email=cleaned_email, registration_complete=True).first()
+
+            if obj:
+                code = obj.create_verify_code()
+                send_email('検証コード', f"あなたの検証コードは {code} です", [obj.email])
+                login(request, obj)
+                return redirect('user:code_verify')
+            else:
+                form.add_error('email', 'User with this email does not exist or is not registered.')
+                context = {'form': form}
+                return render(request, 'user/email-confirmation.html', context)
+        else:
+            context = {'form': form}
             return render(request, 'user/email-confirmation.html', context)
 
 
@@ -115,8 +145,8 @@ class SetPasswordView(LoginRequiredMixin, View):
                 if not validate_password(password):
                     if password == password_confirm:
                         user.password = password
-                        user.save()
                         user.registration_complete = True
+                        user.save()
                         login(request, user)
                         return redirect('news_app:home')
                     else:
