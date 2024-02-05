@@ -82,6 +82,23 @@
                         <p><a class="option_item" href="{% url 'user:email_confirm' %}">{% blocktrans %}サインイン{% endblocktrans %}</a></p>
                     </div>
                 {% endif %}
+                <div class="wiki_container">
+                    <div class="wiki_button">
+                        <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>
+                    </div>
+                    <div class="chat_box_container">
+                        <div class="chat_box_body">
+
+                        </div>
+                        <div class="chat_box_food">
+                            <input class="chat_box_input" placeholder="入力してください">
+                            <button class="submit_button">
+                                <i class="fa-solid fa-paper-plane fa-flip-horizontal"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -125,11 +142,12 @@
         }, 500)
     });
 </script>
-
 <script>
-    const optionBtn = document.querySelector('.js-option-button')
+    const optionBtn = document.querySelector('.nav_bar_avtar')
     const modalContainer = document.querySelector('.js-modal-container')
     const optionOpen = document.querySelector('.options_account_list')
+    const chatBoxBtn = document.querySelector('.wiki_button')
+    const chatBoxOpen = document.querySelector('.chat_box_container')
 
     function showOptionList() {
         optionOpen.classList.add('open')
@@ -148,6 +166,32 @@
     })
 
 
+
+    function showChatBox() {
+        chatBoxOpen.classList.add('open')
+    }
+    function removeChatBox() {
+        chatBoxOpen.classList.remove('open')
+    }
+    function removeChatBox(event) {
+        const isInsideChatBox = event.target.closest('.chat_box_container');
+
+        if (!isInsideChatBox) {
+            chatBoxOpen.classList.remove('open');
+        }
+    }
+
+// Attach the modified removeChatBox function to the click event on modalContainer
+modalContainer.addEventListener('click', removeChatBox);
+    chatBoxBtn.addEventListener('click', showChatBox)
+    modalContainer.addEventListener('click', removeChatBox)
+
+    chatBoxBtn.addEventListener('click', function (event) {
+        event.stopPropagation()
+    })
+    chatBoxBtn.addEventListener('click', function (event) {
+        event.stopPropagation()
+    })
 </script>
 <script>
     const logoutBtn = document.querySelector('.js-logout')
