@@ -87,15 +87,20 @@
                         <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>
                     </div>
                     <div class="chat_box_container">
-                        <div class="chat_box_body">
+                        <div class="chat_box_body" id="messages">
 
                         </div>
-                        <div class="chat_box_food">
-                            <input class="chat_box_input" placeholder="入力してください">
-                            <button class="submit_button">
-                                <i class="fa-solid fa-paper-plane fa-flip-horizontal"></i>
-                            </button>
-                        </div>
+<!--                        <div class="chat_box_food">-->
+<!--                            <form id="form" class="chat_box_food">-->
+<!--                                <input id="keyword" class="chat_box_input" placeholder="Enter a keyword">-->
+<!--                                <button class="submit_button" type="button">Send</button>-->
+<!--                            </form>-->
+
+<!--&lt;!&ndash;                            <input class="chat_box_input" placeholder="入力してください">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button class="submit_button">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <i class="fa-solid fa-paper-plane fa-flip-horizontal"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--                        </div>-->
                     </div>
                 </div>
 
@@ -134,6 +139,39 @@
     {% endblock %}
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
+    const chatSocket = new WebSocket(
+        'ws://' + window.location.host + '/ws/socket-server/'
+    );
+    console.log('WebSocket connection established:', chatSocket);
+
+    chatSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data);
+        console.log('Received message from server:', data);
+
+        let messages = document.getElementById('messages');
+        let messageHTML = `
+            <div class="message left">
+                <b>Wiki</b> : <p>${data.message}</p>
+            </div>
+        `;
+
+        messages.insertAdjacentHTML('beforeend', messageHTML);
+    };
+
+    // Check if the form element exists before adding the event listener
+    const form = document.getElementById('form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let keyword = document.getElementById('keyword').value;
+            console.log('Form submitted with keyword:', keyword);
+            chatSocket.send(JSON.stringify({
+                'keyword': keyword,
+            }));
+            form.reset();
+        });
+    }
+
     window.addEventListener("load", () => {
         const loader = document.querySelector(".loading_wrap");
         loader.classList.add("open");

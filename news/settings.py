@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'main',
 
     'gevent',
-    'modeltranslation'
+    'modeltranslation',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -84,18 +85,18 @@ WSGI_APPLICATION = 'news.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # DATABASES["default"] = dj_database_url.parse("postgres://news_box_db_z285_user:tHWuztNZpmFeiNFPBvviOLOkZc2kt9h7@dpg-cli0p57jc5ks73ep2n90-a.oregon-postgres.render.com/news_box_db_z285")
 
-# DATABASES = {
-#     'default': dj_database_url.parse("postgres://news_box_db_z285_user:tHWuztNZpmFeiNFPBvviOLOkZc2kt9h7@dpg-cli0p57jc5ks73ep2n90-a.oregon-postgres.render.com/news_box_db_z285")
-# }
+DATABASES = {
+    'default': dj_database_url.parse("postgres://news_box_db_z285_user:tHWuztNZpmFeiNFPBvviOLOkZc2kt9h7@dpg-cli0p57jc5ks73ep2n90-a.oregon-postgres.render.com/news_box_db_z285")
+}
 
 
 # Password validation
@@ -184,8 +185,10 @@ AUTHENTICATION_BACKENDS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = '019alisobirov@gmail.com'
-EMAIL_HOST_PASSWORD = 'rxxfxdonmucxobbv'
+EMAIL_HOST_USER = 'newsbox.noreply@gmail.com'
+# EMAIL_HOST_USER = '019alisobirov@gmail.com'
+EMAIL_HOST_PASSWORD = 'pytvdsmcgcsrzxqe'
+# EMAIL_HOST_PASSWORD = 'rxxfxdonmucxobbv'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
