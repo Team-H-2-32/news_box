@@ -6,5 +6,6 @@ app_name = 'main'
 
 urlpatterns = [
     path('error/', error_view, name='error'),
-    path('wiki/', wiki_view, name='wiki'),
+    path('wiki-search/<str:keyword>/', wiki_view, name='wiki_search'),
+
 ]

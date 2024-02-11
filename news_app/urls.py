@@ -18,5 +18,4 @@ urlpatterns = [
     path('translate-comment/<uuid:comment_id>/', comment_translation_view, name='comment_translate'),
     path('delete-comment/<uuid:comment_id>/', comment_delete_view, name='delete_comment'),
 
-
 ]
