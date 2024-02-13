@@ -31,15 +31,22 @@ def home_view(request):
 class NewsView(View):
     def get(self, request):
         user = request.user
-        categories = ''
-        if user.username:
+        selected_category = request.GET.get('category')
+
+        if user.is_authenticated:
             categories = user.followed_categories.all()
         else:
             categories = Category.objects.all()
 
+        if selected_category:
+            news = News.objects.filter(category__category_en=selected_category).order_by('-created_at')[:20]
+        else:
+            news = News.objects.all()
+
         context = {
             'categories': categories,
-            'selected_category': request.GET.get('category', None)
+            'selected_category': selected_category,
+            'news': news
         }
 
         return render(request, 'news_app/news_page.html', context)
@@ -47,7 +54,7 @@ class NewsView(View):
 
 def get_news_view(request, category):
     ctgr = Category.objects.get(category_en=category)
-    news = News.objects.filter(category=ctgr).order_by('-created_at')[:10]
+    news = News.objects.filter(category=ctgr).order_by('-created_at')[:20]
 
     dict = {'news':[]}
 
@@ -82,6 +89,7 @@ class DetailPageView(View):
         if user.is_authenticated:
             history_check = History.objects.filter(user=user, news=news).first()
             saved_check = SavedNews.objects.filter(user=user, news=news).first()
+            categories = user.followed_categories.all()
             saved = False
 
             if news:
@@ -98,6 +106,7 @@ class DetailPageView(View):
                     'news': news,
                     'comments': comments,
                     'saved': saved,
+                    'categories': categories,
                     'arg': 'saved-detail'
                 }
 
@@ -105,10 +114,12 @@ class DetailPageView(View):
             else:
                 return redirect('main:error')
         else:
+            categories = Category.objects.all()
             context = {
                 'form': form,
                 'news': news,
                 'comments': comments,
+                'categories': categories,
                 'arg': 'saved-detail'
             }
 

@@ -1,91 +1,95 @@
 {% extends 'main/base.html' %}
 {% block content %}
-<!--body-->
-<div class="container-fluid news_page_container"  style="margin-top: 6%">
-        <div class="category_wrap">
-            {% for c in categories %}
-            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" url-id={{ c.category_en }}>{{ c.category }}</button>
-            {% endfor %}
-        </div>
+<div class="container-fluid news_page_container" style="margin-top: 6%">
+    <div class="category_wrap">
+        {% for c in categories %}
+        <button class="category_button hover_color_button categories {% if c.category_en == selected_category %}active{% endif %}" style="margin-bottom: 20px;" url-id="{{ c.category_en }}">{{ c.category }}</button>
+        {% endfor %}
+    </div>
 
-        <div class="category_wrap_mobile">
-            {% for c in categories %}
-            <button class="category_button hover_color_button categories" url-id={{ c.category_en }}>{{ c.category }}</button>
-            {% endfor %}
-        </div>
-        <div class="news_item_wrap">
-            {% for c in categories %}
-            <p class="category_title">{{ c.category }}</p>
-            {% endfor %}
+    <div class="category_wrap_mobile">
+        {% for c in categories %}
+        <button class="category_button hover_color_button categories {% if c.category_en == selected_category %}active{% endif %}" url-id="{{ c.category_en }}">{{ c.category }}</button>
+        {% endfor %}
+    </div>
 
-            <ul class="" id="news-container" style="list-style: none;">
-
-            </ul>
-        </div>
+    <div class="news_item_wrap">
+        <ul class="" id="news-container" style="list-style: none;">
+            {% for n in news %}
+            {% if n.photo %}
+            <li class="news-item">
+                <div class="row border_radius_news_item" style='margin-bottom: 30px;'>
+                    <div class="col-sm-3">
+                        <img src="{{ n.photo }}" alt="No photo" style="width: 90%; height: 60%; margin: 16% 0px 0 8%; object-fit: cover;">
+                    </div>
+                    <div class="col-sm-9">
+                        <h4><a href="{% url 'news_app:news_detail' id=n.id %}"><b>{{ n.title }}</b></a></h4>
+                        <p>{{ n.source }}</p>
+                    </div>
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
 </div>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const categories = document.querySelectorAll(".categories");
+document.addEventListener("DOMContentLoaded", function () {
+    const categories = document.querySelectorAll(".categories");
 
-        categories.forEach((category) => {
-            category.addEventListener("click", (e) => {
-                e.preventDefault();
+    categories.forEach((category) => {
+        category.addEventListener("click", (e) => {
+            e.preventDefault();
 
-                const urlId = category.getAttribute("url-id");
+            const urlId = category.getAttribute("url-id");
 
-                console.log(urlId);
+            fetch(`/news/news/${urlId}/`)
+    .then((response) => response.json())
+    .then((data) => {
+        const newsContainer = document.getElementById("news-container");
+        newsContainer.innerHTML = "";
 
-                fetch(`news/${urlId}`)
-                    .then((response) => response.json())
-                    .then((data) => {
+        data.news.forEach((newsObj) => {
+            const content = document.createElement("li");
+            content.classList.add("news-item");
 
-                        const news = data.news;
-
-                        const newsContainer = document.getElementById("news-container");
-
-                        newsContainer.innerHTML = "";
-
-                        news.forEach((newsObj) => {
-                            const content = document.createElement("li");
-                            content.innerHTML = `
-                                <div class="row border_radius_news_item" style='margin-bottom: 30px;'>
-                                    <div class="col-sm-3">
-                                        <img src="${newsObj.photo}" alt="No photo" style="width: 90%; height: 60%; margin: 16% 0px 0 8%;">
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h4><a href="${newsObj.url}"><b>${newsObj.title}</b></a></h4>
-                                        <p>${newsObj.source}</p>
-                                    </div>
-                                </div>
-                                `;
-                            newsContainer.appendChild(content);
-                        });
-                    });
-            });
+            const img = new Image();
+            img.src = newsObj.photo;
+            img.onload = function() {
+                content.innerHTML = `
+                    <div class="row border_radius_news_item" style='margin-bottom: 30px;'>
+                        <div class="col-sm-3">
+                            <img src="${newsObj.photo}" alt="No photo" style="width: 90%; height: 60%; margin: 16% 0px 0 8%;">
+                        </div>
+                        <div class="col-sm-9">
+                            <h4><a href="${newsObj.url}"><b>${newsObj.title}</b></a></h4>
+                            <p>${newsObj.source}</p>
+                        </div>
+                    </div>
+                `;
+                newsContainer.appendChild(content);
+            };
+        });
+    })
+    .catch((error) => {
+        console.error('Error fetching news data:', error);
+    });
         });
     });
+});
 
-    const $ = document.querySelector.bind(document)
-    const $$ = document.querySelectorAll.bind(document)
 
-    const tabs = $$('.category_button')
-    const titles = $$('.category_title')
+const tabs = document.querySelectorAll('.category_button');
 
-    tabs.forEach((tab, index) => {
-        const title = titles[index]
+tabs.forEach((tab) => {
+    tab.addEventListener('click', function() {
+        tabs.forEach((tab) => {
+            tab.classList.remove('active');
+        });
+        this.classList.add('active');
+    });
+});
 
-        tab.onclick = function () {
-            if (($('.category_button.active')) && ($('.category_title.active'))) {
-                $('.category_button.active').classList.remove('active')
-                $('.category_title.active').classList.remove('active')
-
-                this.classList.add('active')
-                title.classList.add('active')
-            } else {
-                this.classList.add('active')
-                title.classList.add('active')
-            }
-        }
-    })
 </script>
 {% endblock %}

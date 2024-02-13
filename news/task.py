@@ -20,7 +20,6 @@ categories = ['business', 'sports', 'technology', 'health', 'entertainment', 'sc
 
 def get_all_news():
     for category_name in categories:
-        # print(category_name)
         category = Category.objects.get(category_en=category_name.title())
         existing_urls = News.objects.filter(category=category).values_list('url', flat=True)
 

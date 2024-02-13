@@ -2,8 +2,16 @@
 {% load i18n %}
 {% block content %}
 <div class="news_detail_page">
+    <div class="category_wrap">
+        <button class="wiki_button" onclick="goBack()"><i class="fa-solid fa-square-caret-left"></i>戻る</button>
+
+            {% for c in categories %}
+        <a href="{% url 'news_app:news' %}?category={{ c.category_en }}">
+            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;">{{ c.category }}</button>
+            </a>
+            {% endfor %}
+        </div>
     <div class="news_wrap">
-         <!--body-->
         <div class="row" style="margin: 4% 0;">
             <div class="col-sm-4 news_detail_page_img_wrap">
                 <img src="{{news.photo}}" style="max-width: 300px;">
@@ -28,7 +36,6 @@
             </div>
         </div>
 
-<!--        Comment input-->
         <div class="comment_container" style="border: none; ">
             <div class="comment_header" style="display: flex; justify-content: start;">
                 <p style="font-size: 40px; margin: 8px 10px 0 20px;">
@@ -51,7 +58,6 @@
             </div>
         </div>
 
-        <!--Commented List-->
         <ul style=" margin: 4% 0 30% 0;">
         {% for comment in comments %}
             <li style="list-style: none;">
@@ -73,6 +79,9 @@
 </div>
 
 <script>
+function goBack() {
+      window.history.back();
+    }
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.translator-btn').forEach(function (button) {
             button.addEventListener('click', function () {
