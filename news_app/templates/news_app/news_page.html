@@ -28,6 +28,7 @@
                     <div class="col-sm-9">
                         <h4><a href="{% url 'news_app:news_detail' id=n.id %}"><b>{{ n.title }}</b></a></h4>
                         <p>{{ n.source }}</p>
+                        <span style="font-size: 12px; margin-left: 6px;">{{ n.created_at|date:"M d, Y" }}</span>
                     </div>
                 </div>
             </li>

@@ -15,6 +15,7 @@
             <div id="error-password" class="alert alert-danger" style="display: none; padding: 6px 10px; font-size: 12px;" role="alert">
                 {% blocktrans %}パスワードを入力してください{% endblocktrans %}
             </div>
+            <p><a href="{% url 'user:forgot_pass' %}">{% blocktrans %}パスワードを忘れた方{% endblocktrans %}</a></p>
             <div style="display: flex; justify-content: center; margin-top: 4%;">
                 <button class="category_button hover_color_button" type="button" onclick="validateForm()" style="width: 30%">{% blocktrans %}次へ{% endblocktrans %}</button>
             </div>

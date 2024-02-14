@@ -7,7 +7,7 @@
         <div class="row" style="margin: 4% 0;">
             <div class="col-sm-2">
                 <div class="category_wrap">
-                    <button class="category_button hover_color_button categories" style="margin: 20px 0 20px 0;" onclick="goBack()">
+                    <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" onclick="goBack()">
                         <i class="fa-solid fa-square-caret-left"></i>
                         戻る
                     </button>
@@ -39,7 +39,7 @@
                                     </div>
                                 {% endif %}
                             </div>
-                            <button class="category_button more_read_button"><a href="{{ news.url }}" style="text-decoration: none; font-size: 22px; color: #e2d9f3;">{% blocktrans %}続きを読む{% endblocktrans %}</a></button>
+                            <button class="category_button more_read_button"><a href="{{ news.url }}" target="_blank" style="text-decoration: none; font-size: 22px; color: #e2d9f3;">{% blocktrans %}続きを読む{% endblocktrans %}</a></button>
                         </div>
                     </div>
                     <div class="comment_container" style="border: none; ">
