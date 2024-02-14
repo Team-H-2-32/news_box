@@ -39,7 +39,7 @@ class NewsView(View):
             categories = Category.objects.all()
 
         if selected_category:
-            news = News.objects.filter(category__category_en=selected_category).order_by('-created_at')[:20]
+            news = News.objects.filter(category__category_en=selected_category).order_by('-published_at')[:20]
         else:
             news = News.objects.all()
 

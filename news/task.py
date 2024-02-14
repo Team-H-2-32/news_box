@@ -2,7 +2,7 @@ from django.core.mail import send_mail
 from main.models import Category
 from news_app.models import News
 # from .celery import app
-from .news_api import top_headlines, key
+from .news_api import top_headlines_get_url, top_headlines, key
 from .microsoft_translator_api import translate
 
 
@@ -23,7 +23,9 @@ def get_all_news():
         category = Category.objects.get(category_en=category_name.title())
         existing_urls = News.objects.filter(category=category).values_list('url', flat=True)
 
-        category_data = top_headlines(key, category_name)
+        category_data = top_headlines_get_url(key, category_name)
+        # category_data = top_headlines(key, category_name)
+        print(f"{category_name} data {category_data}")
 
         for article in category_data['articles']:
             article_url = article['url']
@@ -37,6 +39,7 @@ def get_all_news():
                     description=article['description'],
                     description_en=translate(to='en', text=description),
                     description_ru=translate(to='ru', text=description),
+                    published_at=article['publishedAt'],
                     photo=article['urlToImage'],
                     source=article['source']['name'],
                     url=article_url,

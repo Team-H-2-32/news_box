@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 class News(BaseModel):
     title = models.TextField(null=True)
     description = models.TextField(null=True)
+    published_at = models.DateTimeField(auto_now_add=False)
     photo = models.TextField(null=True)
     source = models.CharField(max_length=300, null=True)
     url = models.TextField(null=True)
