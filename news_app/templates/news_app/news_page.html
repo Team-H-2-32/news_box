@@ -14,6 +14,9 @@
     </div>
 
     <div class="news_item_wrap">
+        {% for c in categories %}
+            <p class="category_title">{{ c.category }}</p>
+        {% endfor %}
         <ul class="" id="news-container" style="list-style: none;">
             {% for n in news %}
             {% if n.photo %}

@@ -82,16 +82,22 @@
                         <p><a class="option_item" href="{% url 'user:email_confirm' %}">{% blocktrans %}サインイン{% endblocktrans %}</a></p>
                     </div>
                 {% endif %}
-                <div class="wiki_container">
+                <div class="wiki_container chatbot">
                     <div class="wiki_button">
                         <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>
                     </div>
                     <div class="chat_box_container">
-                        <div class="chat_box_body" id="messages">
+                        <ul class="chatbox">
+                            <li class="chat incoming">
+                                <span class="material-symbols-outlined"><i class="fa-solid fa-headset"></i></span>
+                                <p>Hi there <br>How i can help you today</p>
+                            </li>
+                        </ul>
+<!--                        <div class="chat_box_body" id="messages">-->
 
-                        </div>
+<!--                        </div>-->
                         <div class="chat_box_food">
-                            <input class="chat_box_input" placeholder="入力してください">
+                            <textarea class="chat_box_input" placeholder="入力してください"></textarea>
                             <button class="submit_button">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
@@ -137,6 +143,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         const searchBtn = document.querySelector('.submit_button');
         const chatBoxBody = document.getElementById('messages');
+        const chatbox = document.querySelector(".chatbox");
 
         searchBtn.addEventListener('click', function() {
             const keyword = document.querySelector('.chat_box_input').value;
@@ -144,6 +151,8 @@
                 fetch(`/main/wiki-search/${keyword}/`)
                     .then(response => response.json())
                     .then(data => {
+                        chatbox.appendChild(createChatLi("Searching...", "incoming"));
+                        chatbox.appendChild(createChatLi(data.result, "incoming"));
                         chatBoxBody.innerHTML = data.result;
                     })
                     .catch(error => {
@@ -155,7 +164,30 @@
         });
     });
 </script>
+<script>
+    const chatInput = document.querySelector(".chat_box_food textarea");
+    const sendChatBtn = document.querySelector(".chat_box_food button");
+    const chatbox = document.querySelector(".chatbox");
+    let userMessage;
 
+    const createChatLi = (message, className) => {
+        const chatLi = document.createElement("li");
+        chatLi.classList.add("chat", className);
+        let chatContent = className === "outgoing" ? `<p>${message}</p>` : `<span class="material-symbols-outlined"><i class="fa-solid fa-headset"></i></span><p>${message}</p>`;
+        chatLi.innerHTML = chatContent;
+        return chatLi;
+    }
+
+    const handleChat = () => {
+        userMessage = chatInput.value.trim();
+        if(!userMessage) return;
+
+        chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+    }
+
+
+    sendChatBtn.addEventListener("click", handleChat)
+</script>
 <script>
     const optionBtn = document.querySelector('.nav_bar_avtar')
     const modalContainer = document.querySelector('.js-modal-container')

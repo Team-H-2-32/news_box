@@ -2,62 +2,72 @@
 {% load i18n %}
 {% block content %}
 <div class="news_detail_page">
-    <div class="category_wrap">
-        <button class="category_button hover_color_button categories" style="margin: 20px 0 20px 0;" onclick="goBack()">
-            <i class="fa-solid fa-square-caret-left"></i>戻る</button>
 
-            {% for c in categories %}
-        <a href="{% url 'news_app:news' %}?category={{ c.category_en }}">
-            <button class="category_button hover_color_button categories" style="margin-bottom: 20px;">{{ c.category }}</button>
-            </a>
-            {% endfor %}
-        </div>
     <div class="news_wrap">
         <div class="row" style="margin: 4% 0;">
-            <div class="col-sm-4 news_detail_page_img_wrap">
-                <img src="{{news.photo}}" style="max-width: 300px;">
+            <div class="col-sm-2">
+                <div class="category_wrap">
+                    <button class="category_button hover_color_button categories" style="margin: 20px 0 20px 0;" onclick="goBack()">
+                        <i class="fa-solid fa-square-caret-left"></i>
+                        戻る
+                    </button>
+
+                    {% for c in categories %}
+                    <a href="{% url 'news_app:news' %}?category={{ c.category_en }}">
+                        <button class="category_button hover_color_button categories" style="margin-bottom: 20px;">{{ c.category }}</button>
+                    </a>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="col-sm-8">
-                <b><p style="font-size: 20px;">{{ news.title }}</p></b>
-                <p style="font-size: 20px;">{{ news.description }}</p>
-                <div style="display: flex; justify-content: end;">
-                    <div style="font-size: 36px;">
-                        {% if saved %}
-                            <div class="save">
-                                <a href="{% url 'news_app:delete' id=news.id arg=arg %}"><i class="fa-solid fa-bookmark" style="color: #a98fd9;"></i></a>
-                            </div>
-                        {% else %}
-                            <div class="not_save">
-                                <a href="{% url 'news_app:save' id=news.id %}"><i class="fa-regular fa-bookmark" style="color: #a98fd9;"></i></a>
-                            </div>
-                        {% endif %}
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-sm-4 news_detail_page_img_wrap">
+                        <img src="{{news.photo}}" style="max-width: 300px;">
                     </div>
-                    <button class="category_button more_read_button"><a href="{{ news.url }}" style="text-decoration: none; font-size: 22px; color: #e2d9f3;">{% blocktrans %}続きを読む{% endblocktrans %}</a></button>
+                    <div class="col-sm-8">
+                        <b><p style="font-size: 20px;">{{ news.title }}</p></b>
+                        <p style="font-size: 20px;">{{ news.description }}</p>
+                        <div style="display: flex; justify-content: end;">
+                            <div style="font-size: 36px;">
+                                {% if saved %}
+                                    <div class="save">
+                                        <a href="{% url 'news_app:delete' id=news.id arg=arg %}"><i class="fa-solid fa-bookmark" style="color: #a98fd9;"></i></a>
+                                    </div>
+                                {% else %}
+                                    <div class="not_save">
+                                        <a href="{% url 'news_app:save' id=news.id %}"><i class="fa-regular fa-bookmark" style="color: #a98fd9;"></i></a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <button class="category_button more_read_button"><a href="{{ news.url }}" style="text-decoration: none; font-size: 22px; color: #e2d9f3;">{% blocktrans %}続きを読む{% endblocktrans %}</a></button>
+                        </div>
+                    </div>
+                    <div class="comment_container" style="border: none; ">
+                        <div class="comment_header" style="display: flex; justify-content: start;">
+                            <p style="font-size: 40px; margin: 8px 10px 0 20px;">
+                                <i class="fa-regular fa-comments"></i>
+                            </p>
+                            <p style="font-size: 22px; margin: 26px 10px 10px 6px; font-weight: 600;">{% blocktrans %}コメント{% endblocktrans %}</p>
+                            <p style="font-size: 26px; margin: 23px 0 10px 6px; font-weight: 600;">{{ comments|length }}</p>
+                            <p style="font-size: 22px; margin: 26px 10px 10px 2px; font-weight: 600;">{% blocktrans %}件{% endblocktrans %}</p>
+                        </div>
+                        <div class="comment_body">
+                            {% if user.is_authenticated %}
+                            <form method="post" style="display: flex; flex-direction: column; align-items: end;">
+                                {% csrf_token %}
+                                <div style="padding: 0 3% 0 3%; width: 100%; ">
+                                    <input class="comment_input" name="comment" required="" id="id_comment" placeholder="コメントを入力してください">
+                                </div>
+                                <button class="category_button" type="submit">{% blocktrans %}保存する{% endblocktrans %}</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="comment_container" style="border: none; ">
-            <div class="comment_header" style="display: flex; justify-content: start;">
-                <p style="font-size: 40px; margin: 8px 10px 0 20px;">
-                    <i class="fa-regular fa-comments"></i>
-                </p>
-                <p style="font-size: 22px; margin: 26px 10px 10px 6px; font-weight: 600;">{% blocktrans %}コメント{% endblocktrans %}</p>
-                <p style="font-size: 26px; margin: 23px 0 10px 6px; font-weight: 600;">{{ comments|length }}</p>
-                <p style="font-size: 22px; margin: 26px 10px 10px 2px; font-weight: 600;">{% blocktrans %}件{% endblocktrans %}</p>
-            </div>
-            <div class="comment_body">
-                {% if user.is_authenticated %}
-                <form method="post" style="display: flex; flex-direction: column; align-items: end;">
-                    {% csrf_token %}
-                    <div style="padding: 0 3% 0 3%; width: 100%; ">
-                        <input class="comment_input" name="comment" required="" id="id_comment" placeholder="コメントを入力してください">
-                    </div>
-                    <button class="category_button" type="submit">{% blocktrans %}保存する{% endblocktrans %}</button>
-                </form>
-                {% endif %}
-            </div>
-        </div>
+
 
         <ul style=" margin: 4% 0 30% 0;">
         {% for comment in comments %}
