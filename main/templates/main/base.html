@@ -195,7 +195,6 @@
         }
     }
 
-// Attach the modified removeChatBox function to the click event on modalContainer
 modalContainer.addEventListener('click', removeChatBox);
     chatBoxBtn.addEventListener('click', showChatBox)
     modalContainer.addEventListener('click', removeChatBox)
@@ -208,21 +207,51 @@ modalContainer.addEventListener('click', removeChatBox);
     })
 </script>
 <script>
-    const logoutBtn = document.querySelector('.js-logout')
-    const logoutConfirm = document.querySelector('.container_logout_verify')
-    const container = document.querySelector('.js-logout-container')
-    function showBtnConfirm() {
-        logoutConfirm.classList.add('open')
-    }
-    function removeBtnConfirm() {
-        logoutConfirm.classList.remove('open')
-    }
-    logoutBtn.addEventListener('click', showBtnConfirm)
-    logoutConfirm.addEventListener('click', removeBtnConfirm)
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutBtn = document.querySelector('.js-logout');
+        const logoutConfirm = document.querySelector('.container_logout_verify');
+        const container = document.querySelector('.js-logout-container');
+        const yesButton = document.querySelector('.yes_button');
+        const noButton = document.querySelector('.no_button');
 
-    container.addEventListener('click', function(event) {
-        event.stopPropagation()
-    })
+        function showBtnConfirm() {
+            logoutConfirm.classList.add('open');
+        }
+
+        function removeBtnConfirm() {
+            logoutConfirm.classList.remove('open');
+        }
+
+        function logout() {
+            console.log("Logging out...");
+            window.location.href = yesButton.href;
+        }
+
+        logoutBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            showBtnConfirm();
+            // Set href attribute for the "Yes" button
+            yesButton.href = "{% url 'user:logout' %}";
+            console.log("yesButton.href set to: ", yesButton.href);
+        });
+
+        yesButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            console.log("Yes button clicked");
+            logout();
+        });
+
+        noButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            console.log("No button clicked");
+            removeBtnConfirm();
+        });
+
+        container.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    });
 </script>
+
 </body>
 </html>

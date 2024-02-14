@@ -3,7 +3,8 @@
 {% block content %}
 <div class="news_detail_page">
     <div class="category_wrap">
-        <button class="wiki_button" onclick="goBack()"><i class="fa-solid fa-square-caret-left"></i>戻る</button>
+        <button class="category_button hover_color_button categories" style="margin: 20px 0 20px 0;" onclick="goBack()">
+            <i class="fa-solid fa-square-caret-left"></i>戻る</button>
 
             {% for c in categories %}
         <a href="{% url 'news_app:news' %}?category={{ c.category_en }}">
