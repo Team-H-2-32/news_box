@@ -87,15 +87,18 @@
                         <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>
                     </div>
                     <div class="chat_box_container">
+                        <div class="chat_box_header">
+                            <p>Wikipedia Chat</p>
+                            <button class="out_button">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
                         <ul class="chatbox">
                             <li class="chat incoming">
                                 <span class="material-symbols-outlined"><i class="fa-solid fa-headset"></i></span>
                                 <p>Hi there <br>How i can help you today</p>
                             </li>
                         </ul>
-<!--                        <div class="chat_box_body" id="messages">-->
-
-<!--                        </div>-->
                         <div class="chat_box_food">
                             <textarea class="chat_box_input" placeholder="入力してください"></textarea>
                             <button class="submit_button">
@@ -190,10 +193,11 @@
 </script>
 <script>
     const optionBtn = document.querySelector('.nav_bar_avtar')
-    const modalContainer = document.querySelector('.js-modal-container')
     const optionOpen = document.querySelector('.options_account_list')
-    const chatBoxBtn = document.querySelector('.wiki_button')
-    const chatBoxOpen = document.querySelector('.chat_box_container')
+    const modalContainer = document.querySelector('.js-modal-container');
+    const chatBoxBtn = document.querySelector('.wiki_button');
+    const chatBoxOpen = document.querySelector('.chat_box_container');
+    const chatOutButton = document.querySelector('.out_button');
 
     function showOptionList() {
         optionOpen.classList.add('open')
@@ -211,32 +215,35 @@
         event.stopPropagation()
     })
 
-
-
     function showChatBox() {
-        chatBoxOpen.classList.add('open')
+        chatBoxOpen.classList.add('open');
     }
-    function removeChatBox() {
-        chatBoxOpen.classList.remove('open')
-    }
+
     function removeChatBox(event) {
         const isInsideChatBox = event.target.closest('.chat_box_container');
+        const isOutButton = event.target.matches('.out_button');
+        console.log("da vao trong dieu kien tren");
 
-        if (!isInsideChatBox) {
+        if (!isInsideChatBox && !isOutButton) {
+            console.log("remove");
             chatBoxOpen.classList.remove('open');
         }
     }
 
-modalContainer.addEventListener('click', removeChatBox);
-    chatBoxBtn.addEventListener('click', showChatBox)
-    modalContainer.addEventListener('click', removeChatBox)
+    chatOutButton.addEventListener('click', function (event) {
+        const isMobile = window.matchMedia("only screen and (max-width: 767px)").matches;
 
+        if (isMobile) {
+            console.log("remove");
+            chatBoxOpen.classList.remove('open');
+        }
+    });
+
+    modalContainer.addEventListener('click', removeChatBox);
+    chatBoxBtn.addEventListener('click', showChatBox);
     chatBoxBtn.addEventListener('click', function (event) {
-        event.stopPropagation()
-    })
-    chatBoxBtn.addEventListener('click', function (event) {
-        event.stopPropagation()
-    })
+        event.stopPropagation();
+    });
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

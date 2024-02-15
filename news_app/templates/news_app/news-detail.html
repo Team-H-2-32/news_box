@@ -1,25 +1,25 @@
 {% extends 'main/base.html' %}
 {% load i18n %}
 {% block content %}
-<div class="news_detail_page">
+<div class="news_detail_page" style="margin-top: 3%;">
 
     <div class="news_wrap">
         <div class="row" style="margin: 4% 0;">
             <div class="col-sm-2">
                 <div class="category_wrap">
-                    <button class="category_button hover_color_button categories" style="margin-bottom: 20px;" onclick="goBack()">
+                    <button class="category_button hover_color_button categories" style="margin-bottom: 40px; width: 200px" onclick="goBack()">
                         <i class="fa-solid fa-square-caret-left"></i>
                         戻る
                     </button>
 
                     {% for c in categories %}
                     <a href="{% url 'news_app:news' %}?category={{ c.category_en }}">
-                        <button class="category_button hover_color_button categories" style="margin-bottom: 20px;">{{ c.category }}</button>
+                        <button class="category_button hover_color_button categories" style="margin: 0 0 20px 20px;">{{ c.category }}</button>
                     </a>
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-10" style="margin-top: 4%;">
                 <div class="row">
                     <div class="col-sm-4 news_detail_page_img_wrap">
                         <img src="{{news.photo}}" style="max-width: 300px;">
@@ -64,28 +64,25 @@
                         </div>
                     </div>
                 </div>
+                <ul style=" margin: 4% 0 30% 0;">
+                    {% for comment in comments %}
+                        <li style="list-style: none;">
+                            <div class="comments">
+                            <span style="font-size: 16px; background-color: #a98fd9; border-top-left-radius: 10px; border-bottom-right-radius: 10px; padding: 1px 8px;">{{ comment.user.username }}</span>
+                            <span style="font-size: 12px; margin-left: 6px;">{{ comment.created_at }}</span>
+                            <p id="comment-{{ comment.id }}" style="word-wrap: break-word"> {{ comment.comment }}</p>
+                            <button type="button" class="btn btn-link translator-btn" comment-id="{{ comment.id }}">
+                                <i class="fa-solid fa-language" style="color: #a98fd9;"></i>
+                            </button>
+                            {% if comment.user.id == request.user.id %}
+                                <a href="{% url 'news_app:delete_comment' comment_id=comment.id %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
+                            {% endif %}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
-
-
-
-        <ul style=" margin: 4% 0 30% 0;">
-        {% for comment in comments %}
-            <li style="list-style: none;">
-                <div class="comments">
-                <span style="font-size: 16px; background-color: #a98fd9; border-top-left-radius: 10px; border-bottom-right-radius: 10px; padding: 1px 8px;">{{ comment.user.username }}</span>
-                <span style="font-size: 12px; margin-left: 6px;">{{ comment.created_at }}</span>
-                <p id="comment-{{ comment.id }}" style="word-wrap: break-word"> {{ comment.comment }}</p>
-                <button type="button" class="btn btn-link translator-btn" comment-id="{{ comment.id }}">
-                    <i class="fa-solid fa-language" style="color: #a98fd9;"></i>
-                </button>
-                {% if comment.user.id == request.user.id %}
-                    <a href="{% url 'news_app:delete_comment' comment_id=comment.id %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
-                {% endif %}
-                </div>
-            </li>
-        {% endfor %}
-        </ul>
     </div>
 </div>
 
