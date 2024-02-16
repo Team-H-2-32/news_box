@@ -7,14 +7,22 @@
         <div class="row" style="margin: 6% 0;">
             <div class="col-sm-2">
                 <div class="category_wrap">
+<<<<<<< Updated upstream
                     <button class="category_button hover_color_button categories go_back" onclick="goBack()">
+=======
+                    <button class="category_button hover_color_button categories" style="margin-bottom: 40px; width: 200px" onclick="goBack()">
+>>>>>>> Stashed changes
                         <i class="fa-solid fa-square-caret-left"></i>
                         戻る
                     </button>
 
                     {% for c in categories %}
                     <a href="{% url 'news_app:news' %}?category={{ c.category_en }}">
+<<<<<<< Updated upstream
                         <button class="category_button hover_color_button categories" style="margin: 0 0 20px 20px; max-width: 180px;">{{ c.category }}</button>
+=======
+                        <button class="category_button hover_color_button categories" style="margin: 0 0 20px 20px;">{{ c.category }}</button>
+>>>>>>> Stashed changes
                     </a>
                     {% endfor %}
                 </div>
