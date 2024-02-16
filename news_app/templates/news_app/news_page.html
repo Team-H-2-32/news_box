@@ -28,11 +28,7 @@
                     <div class="col-sm-9">
                         <h4><a href="{% url 'news_app:news_detail' id=n.id %}"><b>{{ n.title }}</b></a></h4>
                         <p>{{ n.source }}</p>
-<<<<<<< Updated upstream
-                        <span style="font-size: 12px; margin-left: 6px;">{{ n.published_at}}</span>
-=======
-                        <span style="font-size: 14px; margin-left: 6px;">{{ n.created_at|date:"M d, Y" }}</span>
->>>>>>> Stashed changes
+                        <span style="font-size: 12px; margin-left: 6px;">{{ n.published_at }}</span>
                     </div>
                 </div>
             </li>
@@ -61,6 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
         data.news.forEach((newsObj) => {
             const content = document.createElement("li");
             content.classList.add("news-item");
+            const publishedAt = new Date(newsObj.published_at);
+            const formattedPublishedAt = publishedAt.toLocaleString();
+
 
             const img = new Image();
             img.src = newsObj.photo;
@@ -68,12 +67,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 content.innerHTML = `
                     <div class="row border_radius_news_item" style='margin-bottom: 30px;'>
                         <div class="col-sm-3">
-                            <img src="${newsObj.photo}" alt="No photo" style="width: 90%; height: 60%; margin: 16% 0px 0 8%;">
+                            <img src="${newsObj.photo}" alt="No photo" style="width: 90%; height: 60%; margin: 16% 0px 0 8%; object-fit: cover;">
                         </div>
                         <div class="col-sm-9">
                             <h4><a href="${newsObj.url}"><b>${newsObj.title}</b></a></h4>
                             <p>${newsObj.source}</p>
-                            <span style="font-size: 12px; margin-left: 6px;">${newsObj.published_at}</span>
+                            <span style="font-size: 12px; margin-left: 6px;">${formattedPublishedAt}</span>
                         </div>
                     </div>
                 `;

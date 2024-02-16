@@ -501,7 +501,7 @@
 }
 .Edit_profile_header p {
     flex: 7;
-    margin-left: 20%;
+    margin-right: 14%;
 }
 .Edit_go_back_btn {
     display: flex;
@@ -509,7 +509,7 @@
     background-color: white;
     color: #a98fd9;
     border: none;
-    margin: -22px 0 28px 54px;
+    margin: -22px 0 28px 0;
 }
 .Edit_go_back_btn i{
     font-size: 34px;
@@ -530,11 +530,10 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    margin: 28px;
+    margin:  28px 28px 28px -8px;
 }
 .HisBook_go_back_btn {
     display: flex;
-    margin-left: 4%;
     background-color: #a98fd9;
     color: #e2d9f3;
     border: none;
@@ -542,10 +541,11 @@
 .HisBook_go_back_btn i{
     font-size: 34px;
     padding: 8px 14px;
+    background-color: #a98fd9;
+    color: white;
 }
 .HisBook_go_back_btn i:hover{
-    background-color: #e2d9f3;
-    color: #a98fd9;
+    color: #e2d9f3;
 }
 .HisBook_edit_btn {
     margin: 4% 2% 0 0;

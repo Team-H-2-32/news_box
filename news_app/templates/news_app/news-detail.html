@@ -7,22 +7,14 @@
         <div class="row" style="margin: 6% 0;">
             <div class="col-sm-2">
                 <div class="category_wrap">
-<<<<<<< Updated upstream
                     <button class="category_button hover_color_button categories go_back" onclick="goBack()">
-=======
-                    <button class="category_button hover_color_button categories" style="margin-bottom: 40px; width: 200px" onclick="goBack()">
->>>>>>> Stashed changes
                         <i class="fa-solid fa-square-caret-left"></i>
                         戻る
                     </button>
 
                     {% for c in categories %}
                     <a href="{% url 'news_app:news' %}?category={{ c.category_en }}">
-<<<<<<< Updated upstream
                         <button class="category_button hover_color_button categories" style="margin: 0 0 20px 20px; max-width: 180px;">{{ c.category }}</button>
-=======
-                        <button class="category_button hover_color_button categories" style="margin: 0 0 20px 20px;">{{ c.category }}</button>
->>>>>>> Stashed changes
                     </a>
                     {% endfor %}
                 </div>
@@ -30,10 +22,12 @@
             <div class="col-sm-10" style="margin-top: 4%;">
                 <div class="row">
                     <div class="col-sm-4 news_detail_page_img_wrap">
-                        <img src="{{news.photo}}" alt="{{ n.source }}" style="max-width: 100%; height: auto;">
+                        <img src="{{news.photo}}" alt="{{ news.source }}" style="max-width: 100%; height: auto; object-fit: cover;">
                     </div>
                     <div class="col-sm-8">
                         <b><p style="font-size: 20px;">{{ news.title }}</p></b>
+                        <p>{{ news.source }}</p>
+                        <span style="font-size: 12px; margin-left: 6px;">{{ news.published_at }}</span>
                         <p style="font-size: 20px;">{{ news.description }}</p>
                         <div style="display: flex; justify-content: end;">
                             <div style="font-size: 36px;">
@@ -76,15 +70,22 @@
                     {% for comment in comments %}
                         <li style="list-style: none;">
                             <div class="comments">
-                            <span style="font-size: 16px; background-color: #a98fd9; border-top-left-radius: 10px; border-bottom-right-radius: 10px; padding: 1px 8px;">{{ comment.user.username }}</span>
-                            <span style="font-size: 12px; margin-left: 6px;">{{ comment.created_at }}</span>
-                            <p id="comment-{{ comment.id }}" style="word-wrap: break-word"> {{ comment.comment }}</p>
-                            <button type="button" class="btn btn-link translator-btn" comment-id="{{ comment.id }}">
-                                <i class="fa-solid fa-language" style="color: #a98fd9;"></i>
-                            </button>
-                            {% if comment.user.id == request.user.id %}
-                                <a href="{% url 'news_app:delete_comment' comment_id=comment.id %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
-                            {% endif %}
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <img src="{{ comment.user.profile_pic.url }}" alt="Profile pic" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover;">
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <span style="font-size: 16px; background-color: #a98fd9; border-top-left-radius: 10px; border-bottom-right-radius: 10px; padding: 1px 8px;">{{ comment.user.username }}</span>
+                                        <span style="font-size: 12px; margin-left: 6px;">{{ comment.created_at }}</span>
+                                        <p id="comment-{{ comment.id }}" style="font-size: 20px; word-wrap: break-word; margin: 12px 0 0 0;"> {{ comment.comment }}</p>
+                                        <button type="button" class="btn btn-link translator-btn" comment-id="{{ comment.id }}">
+                                            <i class="fa-solid fa-language" style="color: #a98fd9;"></i>
+                                        </button>
+                                        {% if comment.user.id == request.user.id %}
+                                            <a href="{% url 'news_app:delete_comment' comment_id=comment.id %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     {% endfor %}

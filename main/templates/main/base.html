@@ -222,10 +222,8 @@
     function removeChatBox(event) {
         const isInsideChatBox = event.target.closest('.chat_box_container');
         const isOutButton = event.target.matches('.out_button');
-        console.log("da vao trong dieu kien tren");
 
         if (!isInsideChatBox && !isOutButton) {
-            console.log("remove");
             chatBoxOpen.classList.remove('open');
         }
     }
@@ -234,7 +232,6 @@
         const isMobile = window.matchMedia("only screen and (max-width: 767px)").matches;
 
         if (isMobile) {
-            console.log("remove");
             chatBoxOpen.classList.remove('open');
         }
     });
@@ -262,27 +259,22 @@
         }
 
         function logout() {
-            console.log("Logging out...");
             window.location.href = yesButton.href;
         }
 
         logoutBtn.addEventListener('click', function(event) {
             event.preventDefault();
             showBtnConfirm();
-            // Set href attribute for the "Yes" button
             yesButton.href = "{% url 'user:logout' %}";
-            console.log("yesButton.href set to: ", yesButton.href);
         });
 
         yesButton.addEventListener('click', function(event) {
             event.preventDefault();
-            console.log("Yes button clicked");
             logout();
         });
 
         noButton.addEventListener('click', function(event) {
             event.preventDefault();
-            console.log("No button clicked");
             removeBtnConfirm();
         });
 

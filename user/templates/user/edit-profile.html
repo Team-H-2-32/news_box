@@ -7,10 +7,10 @@
     <div class="col-sm-4"></div>
     <div class="col-sm-4 login_container" style="padding: 2% 6px; border: none">
         <div class="Edit_profile_header">
-            <p class="login_label">{% blocktrans %}プロフィール編集{% endblocktrans %}</p>
             <button class="Edit_go_back_btn" >
-                <i class="fa-solid fa-xmark" onclick="goBack()"></i>
+                <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal" onclick="goBack()"></i>
             </button>
+            <p class="login_label">{% blocktrans %}プロフィール編集{% endblocktrans %}</p>
         </div>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}

@@ -222,7 +222,7 @@ class EditProfileView(LoginRequiredMixin, View):
 
         if form.is_valid():
             form.save()
-            return redirect('news_app:home')
+            return redirect('news_app:history_saved')
         else:
             return redirect('main:error')
 

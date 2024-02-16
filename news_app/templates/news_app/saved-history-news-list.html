@@ -6,6 +6,9 @@
 
 <div class="HisBook_container">
     <div class="header_HisBook" style="display: flex; justify-content: space-around; background-color: #a98fd9; width: 100%; height: 180px;">
+        <button class="HisBook_go_back_btn" >
+            <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal" onclick="goBack()"></i>
+        </button>
         <img id="profilePicPreview" src="{% if request.user.profile_pic %}{{ request.user.profile_pic.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="Profile Preview">
         <div style="width: 70%;">
             <p style="font-size: 40px; margin: 32px 0 0 0; color: white;">{{request.user}}</p>
@@ -14,9 +17,6 @@
         <p class="HisBook_edit_btn" style="font-size: 40px">
             <a href="{% url 'user:edit_profile' %}"><i class="fa-solid fa-pen-to-square"></i></a>
         </p>
-        <button class="HisBook_go_back_btn" >
-            <i class="fa-solid fa-xmark" onclick="goBack()"></i>
-        </button>
     </div>
     <div class="body_HisBook">
         <div class="button_wrap" style="display: flex; justify-content: center; background-color: #b7a9d0;">
@@ -24,18 +24,18 @@
             <p class="bookmark_button fromLeftToRight title ">{% blocktrans %}ブックマーク{% endblocktrans %}</p>
         </div>
 
-        <!--History-->
         <div class="history_wrap active">
             {% for i in history %}
                 <div class="row" style="padding: 20px 0px; margin: 0 12px;; border-top: #c1c1c1 solid 1px;">
                     <div class="col-sm-3 HisBook_item_pic">
                         <a href="{% url 'news_app:news_detail' i.id %}">
-                            <img src="{{ i.photo }}" alt="No photo">
+                            <img src="{{ i.photo }}" alt="No photo" style="width: 90%; height: 60%; margin: 16% 0px 0 8%; object-fit: cover;">
                         </a>
                     </div>
                     <div class="col-sm-9">
                         <p class="HisBook_item_title"><a href="{% url 'news_app:news_detail' i.id %}"> {% blocktranslate %}タイトル{% endblocktranslate %}: {{ i.title }}</a></p>
                         <p>{{ i.source }}</p>
+                        <span style="font-size: 14px;">{{ i.published_at }}</span>
                         <p>{% blocktranslate %}カテゴリー{% endblocktranslate %}: <b>{{ i.category.category }}</b></p>
                         <div class="save" style="font-size: 22px; width: 4%;">
                             <a href="{% url 'news_app:delete' id=i.id arg='history' %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
@@ -49,11 +49,12 @@
             {% for i in saved_news %}
                 <div class="row" style="padding: 20px 0px; margin: 0 12px;; border-top: #c1c1c1 solid 1px;">
                     <div class="col-sm-3 HisBook_item_pic">
-                        <img src="{{ i.photo }}" alt="No photo">
+                        <img src="{{ i.photo }}" alt="No photo" style="width: 90%; height: 60%; margin: 16% 0px 0 8%; object-fit: cover;">
                     </div>
                     <div class="col-sm-9">
                         <p class="HisBook_item_title"><a href="{% url 'news_app:news_detail' i.id %}"> {% blocktranslate %}タイトル{% endblocktranslate %}: {{ i.title }}</a></p>
                         <p>{{ i.source }}</p>
+                        <span style="font-size: 14px;">{{ i.published_at }}</span>
                         <p>{% blocktranslate %}カテゴリー{% endblocktranslate %}: <b>{{ i.category.category }}</b></p>
                         <div class="save" style="font-size: 22px; width: 4%;">
                             <a href="{% url 'news_app:delete' id=i.id arg='saved' %}"><i class="fa-solid fa-trash" style="color: #a98fd9;"></i></a>
