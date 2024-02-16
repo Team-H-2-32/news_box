@@ -4,17 +4,17 @@
 <div class="news_detail_page" style="margin-top: 3%;">
 
     <div class="news_wrap">
-        <div class="row" style="margin: 4% 0;">
+        <div class="row" style="margin: 6% 0;">
             <div class="col-sm-2">
                 <div class="category_wrap">
-                    <button class="category_button hover_color_button categories" style="margin-bottom: 40px; width: 200px" onclick="goBack()">
+                    <button class="category_button hover_color_button categories go_back" onclick="goBack()">
                         <i class="fa-solid fa-square-caret-left"></i>
                         戻る
                     </button>
 
                     {% for c in categories %}
                     <a href="{% url 'news_app:news' %}?category={{ c.category_en }}">
-                        <button class="category_button hover_color_button categories" style="margin: 0 0 20px 20px;">{{ c.category }}</button>
+                        <button class="category_button hover_color_button categories" style="margin: 0 0 20px 20px; max-width: 180px;">{{ c.category }}</button>
                     </a>
                     {% endfor %}
                 </div>
@@ -22,7 +22,7 @@
             <div class="col-sm-10" style="margin-top: 4%;">
                 <div class="row">
                     <div class="col-sm-4 news_detail_page_img_wrap">
-                        <img src="{{news.photo}}" style="max-width: 300px;">
+                        <img src="{{news.photo}}" alt="{{ n.source }}" style="max-width: 100%; height: auto;">
                     </div>
                     <div class="col-sm-8">
                         <b><p style="font-size: 20px;">{{ news.title }}</p></b>
@@ -39,7 +39,7 @@
                                     </div>
                                 {% endif %}
                             </div>
-                            <button class="category_button more_read_button"><a href="{{ news.url }}" target="_blank" style="text-decoration: none; font-size: 22px; color: #e2d9f3;">{% blocktrans %}続きを読む{% endblocktrans %}</a></button>
+                            <button class="category_button more_read_button"><a href="{{ news.url }}" target="_blank">{% blocktrans %}続きを読む{% endblocktrans %}</a></button>
                         </div>
                     </div>
                     <div class="comment_container" style="border: none; ">

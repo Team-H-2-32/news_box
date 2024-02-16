@@ -5,8 +5,13 @@
 {% block content %}
 <div class="row container_profile">
     <div class="col-sm-4"></div>
-    <div class="col-sm-4 login_container" style="padding: 2%; border: none">
-        <p class="login_label">{% blocktrans %}プロファイル編集{% endblocktrans %}</p>
+    <div class="col-sm-4 login_container" style="padding: 2% 6px; border: none">
+        <div class="Edit_profile_header">
+            <p class="login_label">{% blocktrans %}プロフィール編集{% endblocktrans %}</p>
+            <button class="Edit_go_back_btn" >
+                <i class="fa-solid fa-xmark" onclick="goBack()"></i>
+            </button>
+        </div>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 <!--        change picture-->
@@ -28,7 +33,7 @@
                 <button class="category_button hover_color_button"  type="submit" style="width: 30%">{% blocktrans %}保存{% endblocktrans %}</button>
             </div>
             <div style="display: flex; justify-content: center; margin-top: 8%;">
-                <p><a href="{% url 'user:change_pass' %}">{% blocktrans %}パスワード交換{% endblocktrans %}</a></p>
+                <p><a href="{% url 'user:change_pass' %}">{% blocktrans %}パスワード変更{% endblocktrans %}</a></p>
             </div>
         </form>
     </div>
@@ -55,6 +60,27 @@
         });
     });
 </script>
+<script>
+function goBack() {
+      window.history.back();
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.translator-btn').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var commentId = button.getAttribute('comment-id');
 
+                fetch('../../../translate-comment/' + commentId + '/')
+                    .then(response => response.json())
+                    .then(data => {
+                        var originalComment = document.querySelector('#comment-' + commentId);
+                        if (originalComment) {
+                            originalComment.innerText = data.translated_comment;
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>
 
 {% endblock content %}

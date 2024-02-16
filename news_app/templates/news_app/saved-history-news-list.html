@@ -14,6 +14,9 @@
         <p class="HisBook_edit_btn">
             <a href="{% url 'user:edit_profile' %}"><i class="fa-solid fa-pen-to-square"></i></a>
         </p>
+        <button class="HisBook_go_back_btn" >
+            <i class="fa-solid fa-xmark" onclick="goBack()"></i>
+        </button>
     </div>
     <div class="body_HisBook">
         <div class="button_wrap" style="display: flex; justify-content: center; background-color: #b7a9d0;">
@@ -86,5 +89,27 @@
 
     BookBtn.addEventListener('click', ShowBookmark)
     HisBtn.addEventListener('click', ShowHistory)
+</script>
+<script>
+function goBack() {
+      window.history.back();
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.translator-btn').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var commentId = button.getAttribute('comment-id');
+
+                fetch('../../../translate-comment/' + commentId + '/')
+                    .then(response => response.json())
+                    .then(data => {
+                        var originalComment = document.querySelector('#comment-' + commentId);
+                        if (originalComment) {
+                            originalComment.innerText = data.translated_comment;
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    });
 </script>
 {% endblock %}

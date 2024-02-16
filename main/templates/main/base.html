@@ -40,7 +40,7 @@
                 {% if request.user.username %}
                     <img class="nav_bar_avtar" src="{{ request.user.profile_pic.url }}">
                     <div class="options_account_list">
-                        <p><a class="option_item" href="{% url 'news_app:history_saved' %}">{% blocktrans %}プロファイル{% endblocktrans %}</a></p>
+                        <p><a class="option_item" href="{% url 'news_app:history_saved' %}">{% blocktrans %}プロフィール{% endblocktrans %}</a></p>
                         <div class="language_in_option">
                             <form class="language" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                                 <input name="next" type="hidden" value="{{ redirect_to }}">
