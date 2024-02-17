@@ -5,14 +5,14 @@
 {% block content %}
 
 <div class="HisBook_container">
-    <div class="header_HisBook" style="display: flex; justify-content: space-around; background-color: #a98fd9; width: 100%; height: 180px;">
+    <div class="header_HisBook">
         <button class="HisBook_go_back_btn" >
             <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal" onclick="goBack()"></i>
         </button>
         <img id="profilePicPreview" src="{% if request.user.profile_pic %}{{ request.user.profile_pic.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" alt="Profile Preview">
         <div style="width: 70%;">
-            <p style="font-size: 40px; margin: 32px 0 0 0; color: white;">{{request.user}}</p>
-            <p style="font-size: 22px; font-weight: 700; color: white;">{{ request.user.email }}</p>
+            <p class="UserName">{{request.user}}</p>
+            <p class="UserMail">{{ request.user.email }}</p>
         </div>
         <p class="HisBook_edit_btn" style="font-size: 40px">
             <a href="{% url 'user:edit_profile' %}"><i class="fa-solid fa-pen-to-square"></i></a>

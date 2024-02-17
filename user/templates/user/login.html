@@ -11,11 +11,8 @@
     <link rel="stylesheet" href="{% static '/style.css' %}">
 </head>
 <body>
-<div class="row login_wrap">
-    <div class="col-sm-4">
-
-    </div>
-    <div class="col-sm-4 login_container">
+<div class="login_wrap">
+    <div class="login_container">
         <p class="login_label">{% blocktrans %}ログイン{% endblocktrans %}</p>
         <form method="post" id="login-form">
             {% csrf_token %}
@@ -33,9 +30,6 @@
                 <p><a href="{% url 'user:email_confirm' %}">{% blocktrans %}初めての方{% endblocktrans %}</a>  /  <a href="{% url 'user:forgot_pass' %}">{% blocktrans %}パスワードを忘れた方{% endblocktrans %}</a></p>
             </div>
         </form>
-    </div>
-    <div class="col-sm-4">
-
     </div>
 </div>
 <script>
