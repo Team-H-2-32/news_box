@@ -453,6 +453,17 @@
     padding: 1% 2%;
     margin: 2% 0 4% 0;
 }
+/* code verify*/
+.code_verify {
+    margin-top: 6%;
+    display: flex;
+    justify-content: center;
+}
+.code_verify .login_container{
+    padding: 2%;
+    border: none;
+    width: 40%;
+}
 /* category page */
 .category_page_name {
     font-size: 50px;
@@ -1037,12 +1048,282 @@
     .chat_box_input {
         height: 40px;
     }
+    /* code verify*/
+    .code_verify {
+        margin-top: 36%;
+    }
+    .code_verify .login_container{
+        width: 90%;
+    }
 }
 /* Ipad */
 @media only screen and (min-width: 46.1875em) and (max-width: 63.9375em) {
-
-}
-/* Pc */
-@media only screen and (min-width: 64em) {
-
+    /* loading */
+    .loading {
+        margin: 80% auto;
+    }
+    /* head */
+    .container_nav_bar {
+        height: 5em;
+    }
+    .nav_bar_logo {
+        width: 150px;
+        height: 42px;
+        margin: 16px 0px;
+    }
+    .option_menu_wrap {
+        position: absolute;
+        top: 12%;
+        left: 89%;
+    }
+    .options_account_list {
+        width: 170px;
+        right: -28%;
+        top: 125%;
+        animation: modalShowOut ease 0.6s;
+    }
+    @keyframes modalShowOut {
+        from {
+            opacity: 0;
+            right: -170px;
+        }
+        to {
+            opacity: 1;
+            right: -19px;
+        }
+    }
+    .options_account_list::after {
+        display: none;
+    }
+    .options_account_list p {
+        padding: 10px 14px;
+    }
+    .language_out_option {
+        display: none;
+    }
+    .language_in_option {
+        display: block;
+        background-color: #e2d9f3;
+        padding-left: 6px;
+    }
+    /* news page */
+    .category_wrap {
+        display: none;
+    }
+    .category_wrap_mobile {
+        display: flex;
+        background-color: #e2d9f3;
+        box-shadow: 0 0 16px 2px #a98fd9;
+        overflow-x: auto;
+        white-space: nowrap;
+        margin: 16% 4% 6% 4%;
+    }
+    .category_wrap_mobile .category_button {
+        margin: 3% 3% 3% 3%;
+        padding: 0 2%;
+    }
+    .news_item_wrap {
+        margin: 0;
+    }
+    .news_item_wrap .news-container img{
+        margin: 6%;
+    }
+    .news_item_wrap .category_title {
+        font-size: 28px;
+    }
+    .category_wrap_mobile .category_button.active {
+        border: 1px solid #a98fd9;
+        box-shadow: 0 0 20px 0px #a98fd9;
+    }
+    /* news detail page */
+    .news_wrap {
+        width: 86%;
+        margin: -30px;
+    }
+    .news_wrap img {
+        width: 100%;
+    }
+    .news_wrap .col-sm-2{
+        display: none;
+    }
+    .news_wrap .col-sm-8 {
+        width: 100%;
+    }
+    .news_wrap .row{
+        justify-content: center;
+    }
+    .news_detail_page_img_wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 70px 0 20px 0;
+    }
+    .more_read_button {
+        width: 40%;
+        margin-left: 16%;
+    }
+    more_read_button a {
+        font-size: 20px;
+        padding: 0 2px;
+    }
+    /* comment */
+    .comment_body .category_button {
+        width: 40%;
+        font-size: 20px;
+        margin: 6% 3% 1% 0;
+    }
+    /* His Book profile */
+    .header_HisBook {
+        padding: 2% 0;
+    }
+    .UserName {
+        font-size: 32px;
+        margin: 32px 0 0 0;
+        color: white;
+    }
+    .UserMail {
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+    }
+    .HisBook_go_back_btn i {
+        font-size: 32px;
+        padding: 0 8px;
+    }
+    .HisBook_edit_btn a {
+        font-size: 34px;
+    }
+    .header_HisBook img {
+        margin: 28px 22px;
+        width: 100px;
+        height: 100px;
+    }
+    .HisBook_container {
+        display: flex;
+        justify-content: center;
+        margin: 12% 2% 0 2%;
+    }.js-logout-container
+    .HisBook_container .col-sm-6 {
+        width: 90%;
+    }
+    .HisBook_item_pic {
+        margin-bottom: 20px;
+    }
+    .HisBook_item_pic img {
+        width: 100%;
+        height: 100%;
+    }
+    .HisBook_item_title{
+        font-size: 20px;
+    }
+    .login_container {
+        width: 70%;
+    }
+    .js-logout-container {
+        margin-top: 40%;
+    }
+    .login_wrap {
+        margin-top: 22%;
+    }
+    /* Edit profile */
+    .container_profile {
+        margin: 26% 0 0 0;
+    }
+    .Edit_profile_header .Edit_go_back_btn{
+        margin: 0;
+    }
+    .Edit_profile_header .Edit_go_back_btn i{
+        font-size: 32px;
+    }
+    /* change pass*/
+    .change_pass {
+        margin-top: 30%;
+    }
+    .change_pass .login_container{
+        width: 70%;
+        padding: 4%;
+    }
+    .change_pass label {
+        font-size: 18px;
+    }
+    .change_pass p {
+        font-size: 14px;
+    }
+    /* set password */
+    .set_pass_container {
+        margin-top: 16%;
+    }
+    /* wiki */
+    .wiki_button {
+        border: 2px solid #e2d9f3;
+        font-size: 38px;
+        padding: 0 12px;
+    }
+    .chat_box_container {
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        border-radius: 0;
+    }
+    .chat_box_container.open{
+        display: block;
+    }
+    .chat_box_header {
+        display: block;
+        background-color: #a98fd9;
+        height: 8%;
+        color: white;
+        display: flex;
+    }
+    .chat_box_header p {
+        font-size: 26px;
+        font-weight: 600;
+        text-align: center;
+        flex: 16;
+        padding-top: 2%;
+        margin-left: 8%;
+    }
+    .out_button {
+        padding: 6px 10px;
+        flex: 1;
+        margin-bottom: 26px;
+        background-color: #a98fd9;
+        border: none;
+    }
+    .out_button i {
+        font-size: 34px;
+        margin-bottom: 26px;
+        color: #e2d9f3;
+        padding: 6px 12px;
+    }
+    .chatbox{
+        height: 84%;
+        border-radius: 0;
+        margin-bottom: 10px;
+    }
+    .chatbox p {
+        margin-top: 6%;
+    }
+    .incoming {
+        font-size: 28px;
+    }
+    .outgoing {
+        font-size: 28px;
+    }
+    .incoming i{
+        font-size: 30px;
+        margin: 50% 20px 0 14px;
+    }
+    .chat_box_input {
+        height: 40px;
+    }
+    /* code verify*/
+    .code_verify {
+        margin-top: 20%;
+    }
+    .code_verify .login_container{
+        width: 60%;
+    }
 }
