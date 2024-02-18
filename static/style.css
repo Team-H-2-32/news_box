@@ -524,7 +524,13 @@
 /* Edit profile*/
 .container_profile {
     margin-top: 6%;
+    display: flex;
     justify-content: center;
+}
+.container_profile img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
 }
 .Edit_profile_header {
     display: flex;
@@ -870,6 +876,10 @@
     /* Edit profile */
     .container_profile {
         margin: 32% 0 16% 0;
+    }
+    .container_profile img {
+        width: 170px;
+        height: 170px;
     }
     .Edit_profile_header .Edit_go_back_btn{
         margin: 0;
