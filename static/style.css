@@ -411,6 +411,16 @@
     box-shadow: 0 0 10px 0 #a98fd9;
     border: none;
 }
+.list_comments {
+    display: flex;
+}
+.list_comments_img {
+    flex: 1;
+}
+.list_comments_body {
+    flex: 11;
+}
+
 /* change pass*/
 .change_pass {
     margin-top: 12%;
@@ -503,6 +513,9 @@
 }
 .news_wrap {
     width: 70%;
+}
+.news_wrap ul {
+    margin: 4% 0 30% 0;
 }
 .news_wrap .category_wrap {
     border-right: solid 1px #545454;
@@ -944,6 +957,10 @@
     .news_wrap {
         width: 86%;
     }
+    .news_wrap ul {
+        padding: 0;
+        margin: 18% 0 30% 0;
+    }
     .news_wrap img {
         width: 100%;
     }
@@ -962,10 +979,16 @@
         padding: 0 2px;
     }
     /* comment */
+    .comment_container {
+        margin-top: 26%;
+    }
     .comment_body .category_button {
         width: 40%;
         font-size: 20px;
         margin: 6% 3% 1% 0;
+    }
+    .list_comments_body {
+        flex: 7;
     }
     /* news page */
     .category_wrap {
@@ -998,6 +1021,9 @@
     .category_wrap_mobile .category_button.active {
         border: 1px solid #a98fd9;
         box-shadow: 0 0 20px 0px #a98fd9;
+    }
+    .list_comments_img {
+        margin-right: 10px;
     }
     /* category page*/
     .category_page_name {
@@ -1150,6 +1176,9 @@
         width: 86%;
         margin: -30px;
     }
+    .news_wrap ul {
+        margin: 8% 0 30% 0;
+    }
     .news_wrap img {
         width: 100%;
     }
@@ -1181,6 +1210,12 @@
         width: 40%;
         font-size: 20px;
         margin: 6% 3% 1% 0;
+    }
+    .list_comments_body {
+        flex: 7;
+    }
+    .comment_container {
+        margin-top: 12%;
     }
     /* His Book profile */
     .header_HisBook {
