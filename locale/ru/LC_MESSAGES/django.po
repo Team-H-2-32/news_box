@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-09 12:48+0900\n"
+"POT-Creation-Date: 2024-02-19 15:19+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +21,15 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: .\main\templates\main\base.html:43
-msgid "プロファイル"
+msgid "プロフィール"
 msgstr "Профиль"
 
 #: .\main\templates\main\base.html:60
 msgid "ログアウト"
 msgstr "Выйти"
 
-#: .\main\templates\main\base.html:81 .\user\templates\user\login.html:26
-#: .\user\templates\user\login.html:37
+#: .\main\templates\main\base.html:81 .\user\templates\user\login.html:16
+#: .\user\templates\user\login.html:27
 msgid "ログイン"
 msgstr "Логин"
 
@@ -37,31 +37,74 @@ msgstr "Логин"
 msgid "サインイン"
 msgstr "Войти"
 
-#: .\main\templates\main\base.html:90
+#: .\main\templates\main\base.html:100
+msgid ""
+"\n"
+"                                    こんにちは！ <br>私はフレンドリーなボット"
+"です。もしニュースの中で見慣れない言葉や場所、\n"
+"                                    人物名が出てきたら、ここにコピーして貼り"
+"付けてください。Wikipediaから情報を取得して、\n"
+"                                    より良く理解するのを手伝います。何でも聞"
+"いてくださいね！\n"
+"                                    "
+msgstr ""
+"\n"
+" Привет! Я твой дружелюбный бот. Если в новостях встречаются термины, "
+"названия мест или имена, которые тебе незнакомы, просто введи их сюда или "
+"скопируй и вставь, и я достану информацию из Википедии, чтобы помочь тебе "
+"лучше понять. Спрашивай все, что угодно!"
+
+#: .\main\templates\main\base.html:109
+msgid "入力してください"
+msgstr "Пожалуйста введите"
+
+#: .\main\templates\main\base.html:122
 msgid "ログアウトしてもよろしいですか？"
 msgstr "Вы действительно хотите выйти？"
 
-#: .\main\templates\main\base.html:93
+#: .\main\templates\main\base.html:125
 msgid "はい"
 msgstr "Да"
 
-#: .\main\templates\main\base.html:96
+#: .\main\templates\main\base.html:128
 msgid "いいえ"
 msgstr "Нет"
 
+#: .\main\templates\main\base.html:166
+msgid "検索しています..."
+msgstr "Идет поиск"
+
+#: .\main\templates\main\base.html:177
+msgid "ごめんなさい、一致するデータが見つかりませんでした。"
+msgstr "К сожалению, соответствующих данных не найдено."
+
+#: .\main\templates\main\error.html:13
+msgid "このアクションの実行中にエラーが発生しました。"
+msgstr "При выполнении этого действия произошла ошибка."
+
+#: .\main\templates\main\error.html:14
+msgid "後で再試行してください。"
+msgstr "Пожалуйста, повторите попытку позже."
+
+#: .\main\templates\main\error.html:15
+#: .\news_app\templates\news_app\news-detail.html:12
+msgid "戻る"
+msgstr "Назад"
+
 #: .\news\settings.py:154
 msgid "Japanese"
-msgstr ""
+msgstr "Японский"
 
 #: .\news\settings.py:155
 msgid "English"
-msgstr ""
+msgstr "Английский"
 
 #: .\news\settings.py:156
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: .\news_app\templates\news_app\categories.html:11
+#: .\news_app\templates\news_app\home.html:14
 msgid "すべてのカテゴリー"
 msgstr "Все категории"
 
@@ -69,90 +112,154 @@ msgstr "Все категории"
 msgid "フォローしているカテゴリー"
 msgstr "Подписываемые категории"
 
-#: .\news_app\templates\news_app\news-detail.html:26
+#: .\news_app\templates\news_app\news-detail.html:44
 msgid "続きを読む"
 msgstr "читать далее"
 
-#: .\news_app\templates\news_app\news-detail.html:37
+#: .\news_app\templates\news_app\news-detail.html:52
 msgid "コメント"
 msgstr "Комментарии"
 
-#: .\news_app\templates\news_app\news-detail.html:39
+#: .\news_app\templates\news_app\news-detail.html:54
 msgid "件"
 msgstr " "
 
-#: .\news_app\templates\news_app\news-detail.html:48
+#: .\news_app\templates\news_app\news-detail.html:61
+msgid "コメントを入力してください"
+msgstr "Bведите комментарий"
+
+#: .\news_app\templates\news_app\news-detail.html:63
 msgid "保存する"
 msgstr "Сохранять"
 
-#: .\news_app\templates\news_app\saved-history-news-list.html:20
+#: .\news_app\templates\news_app\saved-history-news-list.html:23
 msgid "履歴"
 msgstr "История"
 
-#: .\news_app\templates\news_app\saved-history-news-list.html:21
+#: .\news_app\templates\news_app\saved-history-news-list.html:24
 msgid "ブックマーク"
 msgstr "Сохраненные"
 
-#: .\news_app\templates\news_app\saved-history-news-list.html:34
-#: .\news_app\templates\news_app\saved-history-news-list.html:52
+#: .\news_app\templates\news_app\saved-history-news-list.html:36
+#: .\news_app\templates\news_app\saved-history-news-list.html:55
 msgid "タイトル"
 msgstr "Заголовок"
 
-#: .\news_app\templates\news_app\saved-history-news-list.html:36
-#: .\news_app\templates\news_app\saved-history-news-list.html:54
+#: .\news_app\templates\news_app\saved-history-news-list.html:39
+#: .\news_app\templates\news_app\saved-history-news-list.html:58
 msgid "カテゴリー"
 msgstr "Категория"
 
-#: .\user\templates\user\change-pass.html:12
-#: .\user\templates\user\login.html:33
-#: .\user\templates\user\set-password.html:26
+#: .\user\templates\user\change-pass.html:11
+#: .\user\templates\user\login.html:23
+#: .\user\templates\user\set-password.html:18
 msgid "パスワード"
 msgstr "Пароль"
 
-#: .\user\templates\user\change-pass.html:16
-#: .\user\templates\user\code-verify.html:31
-#: .\user\templates\user\email-confirmation.html:32
-#: .\user\templates\user\set-password.html:34
-msgid "次へ"
-msgstr "Следующий"
+#: .\user\templates\user\change-pass.html:15
+#: .\user\templates\user\set-password.html:22
+msgid "パスワードを入力してください"
+msgstr "Пожалуйста введите ваш пароль"
 
-#: .\user\templates\user\code-verify.html:26
-msgid "コード"
-msgstr "Код подтверждения"
-
-#: .\user\templates\user\code-verify.html:30
-msgid "コードをもう一度送信"
-msgstr "Отправить код снова"
-
-#: .\user\templates\user\edit-profile.html:9
-msgid "プロファイル編集"
-msgstr "Редактировать профиль"
-
-#: .\user\templates\user\edit-profile.html:28
-msgid "保存"
-msgstr "Сохранять"
-
-#: .\user\templates\user\edit-profile.html:31
-msgid "パスワード交換"
-msgstr "Изменить пароль"
-
-#: .\user\templates\user\email-confirmation.html:25
-msgid "アカウントを作成する"
-msgstr "Создать новый аккаунт"
-
-#: .\user\templates\user\email-confirmation.html:28
-#: .\user\templates\user\login.html:29
-msgid "メールアドレス"
-msgstr "Электронная почта"
-
-#: .\user\templates\user\login.html:40
-msgid "無料会員"
-msgstr "Регистрация"
-
-#: .\user\templates\user\login.html:40
+#: .\user\templates\user\change-pass.html:17
+#: .\user\templates\user\login.html:30
 msgid "パスワードを忘れた方"
 msgstr "Забыли пароль?"
 
-#: .\user\templates\user\set-password.html:30
+#: .\user\templates\user\change-pass.html:19
+#: .\user\templates\user\code-verify.html:26
+#: .\user\templates\user\email-confirmation.html:25
+#: .\user\templates\user\pass_forgot.html:26
+#: .\user\templates\user\set-password.html:45
+msgid "次へ"
+msgstr "Следующий"
+
+#: .\user\templates\user\code-verify.html:18
+msgid "コード"
+msgstr "Код подтверждения"
+
+#: .\user\templates\user\code-verify.html:22
+msgid "コードは必須項目です。"
+msgstr "Код является обязательным полем"
+
+#: .\user\templates\user\code-verify.html:25
+msgid "コードをもう一度送信"
+msgstr "Отправить код снова"
+
+#: .\user\templates\user\edit-profile.html:12
+msgid "プロフィール編集"
+msgstr "Редактировать профиль"
+
+#: .\user\templates\user\edit-profile.html:32
+msgid "保存"
+msgstr "Сохранять"
+
+#: .\user\templates\user\edit-profile.html:35
+msgid "パスワード変更"
+msgstr "Изменить пароль"
+
+#: .\user\templates\user\email-confirmation.html:18
+msgid "アカウントを作成する"
+msgstr "Создать новый аккаунт"
+
+#: .\user\templates\user\email-confirmation.html:21
+#: .\user\templates\user\login.html:19
+#: .\user\templates\user\pass_forgot.html:22
+msgid "メールアドレス"
+msgstr "Электронная почта"
+
+#: .\user\templates\user\login.html:30
+msgid "初めての方"
+msgstr "Новички"
+
+#: .\user\templates\user\pass_forgot.html:18
+msgid "登録しているメールアドレスを入力してください。\n"
+msgstr "Отправить код снова \n"
+
+#: .\user\templates\user\set-password.html:25
 msgid "もう一度パスワードを入力してください"
 msgstr "Отправить код снова"
+
+#: .\user\templates\user\set-password.html:29
+msgid "パスワードを再入力してください"
+msgstr "Отправить код снова"
+
+#: .\user\templates\user\set-password.html:32
+msgid ""
+"\n"
+"            <p style=\"margin-bottom: 4px;\">パスワードのルール</p>\n"
+"            <ul>\n"
+"                <li>8文字以上</li>\n"
+"                <li>1つ以上の文字(a, b, c...)</li>\n"
+"                <li>1つ以上の数字(1, 2, 3...)</li>\n"
+"                <li>大文字と小文字の両方を含めてください</li>\n"
+"                <li>パスワードには簡単に推測できる単語、 語句、パターンは使え"
+"ません</li>\n"
+"                <li>3つ以上の連続文字(\"111\", 123\", \"abc\", \"qwert\"な"
+"ど) は使えません</li>\n"
+"            </ul>\n"
+"            "
+msgstr ""
+"\n"
+"            <p style=\"margin-bottom: 4px;\">Правила пароля</p>\n"
+"            <ul>\n"
+"                <li>8 символов или более</li>\n"
+"                <li>Oдин или несколько символов(a, b, c...)</li>\n"
+"                <li>Oдно или несколько чисел(1, 2, 3...)</li>\n"
+"                <li>Пожалуйста, указывайте как прописные, так и строчные буквы</li>\n"
+"                <li>Пароли не могут содержать легко угадываемые слова, фразы"
+" или шаблоны.</li>\n"
+"                <li>Три или более последовательных символа (нельзя использовать «111», «123», «abc», «qwert» "
+"и т. д.)</li>\n"
+"            </ul>\n"
+"            "
+
+
+#~ msgid "プロファイル"
+#~ msgstr "Профиль"
+
+#~ msgid "プロファイル編集"
+#~ msgstr "Редактировать профиль"
+
+#~ msgid "無料会員"
+#~ msgstr "Регистрация"

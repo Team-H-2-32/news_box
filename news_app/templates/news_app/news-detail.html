@@ -9,7 +9,7 @@
                 <div class="category_wrap">
                     <button class="category_button hover_color_button categories go_back" onclick="goBack()">
                         <i class="fa-solid fa-square-caret-left"></i>
-                        戻る
+                       {% blocktrans %}戻る{% endblocktrans %}
                     </button>
 
                     {% for c in categories %}
@@ -58,7 +58,7 @@
                             <form method="post" style="display: flex; flex-direction: column; align-items: end;">
                                 {% csrf_token %}
                                 <div style="padding: 0 3% 0 3%; width: 100%; ">
-                                    <input class="comment_input" name="comment" required="" id="id_comment" placeholder="コメントを入力してください">
+                                    <input class="comment_input" name="comment" required="" id="id_comment" placeholder="{% blocktrans %}コメントを入力してください{% endblocktrans %}">
                                 </div>
                                 <button class="category_button" type="submit">{% blocktrans %}保存する{% endblocktrans %}</button>
                             </form>

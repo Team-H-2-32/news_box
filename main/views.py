@@ -16,7 +16,7 @@ def wiki_view(request, keyword):
     try:
         result = search_wikipedia(language, keyword)
     except Exception as e:
-        result = 'No matching data. Try different keyword.'
+        result = False
 
     context = {
         'result': result

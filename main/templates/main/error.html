@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +11,9 @@
     <div class="error-container">
         <div class="error-icon">!</div>
         <div class="error-message">
-            <p>このアクションの実行中にエラーが発生しました。</p>
-            <p>後で再試行してください。</p>
-            <button class="ComeBackButton" onclick="goBack()">戻る</button>
+            <p>{% blocktrans %}このアクションの実行中にエラーが発生しました。{% endblocktrans %}</p>
+            <p>{% blocktrans %}後で再試行してください。{% endblocktrans %}</p>
+            <button class="ComeBackButton" onclick="goBack()">{% blocktrans %}戻る{% endblocktrans %}</button>
         </div>
     </div>
 </body>
