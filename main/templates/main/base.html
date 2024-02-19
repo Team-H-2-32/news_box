@@ -96,11 +96,17 @@
                         <ul class="chatbox">
                             <li class="chat incoming">
                                 <span class="material-symbols-outlined"><i class="fa-solid fa-headset"></i></span>
-                                <p>Hi there <br>How i can help you today</p>
+                                <p>
+                                    {% blocktrans %}
+                                    こんにちは！ <br>私はフレンドリーなボットです。もしニュースの中で見慣れない言葉や場所、
+                                    人物名が出てきたら、ここにコピーして貼り付けてください。Wikipediaから情報を取得して、
+                                    より良く理解するのを手伝います。何でも聞いてくださいね！
+                                    {% endblocktrans %}
+                                </p>
                             </li>
                         </ul>
                         <div class="chat_box_food">
-                            <textarea class="chat_box_input" placeholder="入力してください"></textarea>
+                            <textarea class="chat_box_input" placeholder="{% blocktrans %}入力してください{% endblocktrans %}"></textarea>
                             <button class="submit_button">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
@@ -143,30 +149,68 @@
     {% endblock %}
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchBtn = document.querySelector('.submit_button');
-        const chatBoxBody = document.getElementById('messages');
-        const chatbox = document.querySelector(".chatbox");
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.querySelector('.submit_button');
+    const chatBoxInput = document.querySelector('.chat_box_input');
+    const chatBoxBody = document.getElementById('messages');
+    const chatbox = document.querySelector(".chatbox");
 
-        searchBtn.addEventListener('click', function() {
-            const keyword = document.querySelector('.chat_box_input').value;
-            if (keyword.trim() !== '') {
-                fetch(`/main/wiki-search/${keyword}/`)
-                    .then(response => response.json())
-                    .then(data => {
-                        chatbox.appendChild(createChatLi("Searching...", "incoming"));
+    // Function to handle search
+    const handleSearch = () => {
+        const keyword = chatBoxInput.value.trim();
+        if (keyword !== '') {
+            // Append user's message to the chatbox
+            chatbox.appendChild(createChatLi(keyword, "outgoing"));
+
+            // Append loading message to indicate search is in progress
+            chatbox.appendChild(createChatLi("{% blocktrans %}検索しています...{% endblocktrans %}", "incoming"));
+
+            fetch(`/main/wiki-search/${keyword}/`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result !== false) {
+                        // Append search result to the chatbox
                         chatbox.appendChild(createChatLi(data.result, "incoming"));
                         chatBoxBody.innerHTML = data.result;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching wiki data:', error);
-                    });
-            } else {
-                console.log('Please enter a keyword to search.');
-            }
-        });
-    });
+                    } else {
+                        // Append error message if no result found
+                        chatbox.appendChild(createChatLi("{% blocktrans %}ごめんなさい、一致するデータが見つかりませんでした。{% endblocktrans %}", "incoming"));
+                    }
+                    scrollToBottom(); // Scroll to bottom after messages are appended
+                })
+                .catch(error => {
+                    console.error('Error fetching wiki data:', error);
+                });
+
+            // Clear the input field after search
+            chatBoxInput.value = '';
+        } else {
+            console.log('Please enter a keyword to search.');
+        }
+    };
+
+    // Function to handle "Enter" key press
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission
+            handleSearch();
+        }
+    };
+
+    // Add event listener for "click" on search button
+    searchBtn.addEventListener('click', handleSearch);
+
+    // Add event listener for "keydown" on input field
+    chatBoxInput.addEventListener('keydown', handleKeyPress);
+
+    // Function to scroll chatbox to bottom
+    function scrollToBottom() {
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+});
+
 </script>
+
 <script>
     const chatInput = document.querySelector(".chat_box_food textarea");
     const sendChatBtn = document.querySelector(".chat_box_food button");
