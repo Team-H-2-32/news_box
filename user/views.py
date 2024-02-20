@@ -118,7 +118,7 @@ def resend_code(request):
             email = user.email
             print(code)
             # send_email.delay('検証コード', f"あなたの検証コードは {code} です", [cleaned_email])
-            send_email('検証コード', f"あなたの検証コードは {code} です", [email])
+            send_email('認証コード', f"あなたの認証コードは {code} です", [email])
             messages.success(request, "We sent you confirmation code again. Please check your mailbox")
             return redirect('user:code_verify')
     else:
