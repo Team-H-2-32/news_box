@@ -11,10 +11,8 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-<div class="row login_wrap">
-    <div class="col-sm-4">
-    </div>
-    <div class="col-sm-4 login_container">
+<div class="login_wrap">
+    <div class="login_container">
         <p class="login_label">{% blocktrans %}アカウントを作成する{% endblocktrans %}</p>
         <form method="post" id="email-form">
             {% csrf_token %}
@@ -25,8 +23,6 @@
                 <button class="category_button hover_color_button login_button" type="submit" style="width: 30%">{% blocktrans %}次へ{% endblocktrans %}</button>
             </div>
         </form>
-    </div>
-    <div class="col-sm-4">
     </div>
 </div>
 
